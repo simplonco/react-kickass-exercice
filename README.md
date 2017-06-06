@@ -22,14 +22,14 @@ A partir d'un "create-react-app", vous devez implémenter un back-office permett
 * modifier un projet
 * supprimer un projet
 
-Le tout doit être connecté au backend servi sur https://kickass-sdw-3a.herokuapp.com.
+Le tout doit être connecté au backend servi sur https://kickass-sdw-3a.herokuapp.com/api.
 Vous trouverez les specs de l'api kickass-sdw-3a ci-dessous :
 
 ------
 
 ## API
 
-* End point : https://kickass-sdw-3a.herokuapp.com
+* End point : https://kickass-sdw-3a.herokuapp.com/api
 
 * Format d'échange : JSON
 
