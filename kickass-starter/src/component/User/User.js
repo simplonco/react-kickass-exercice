@@ -39,10 +39,11 @@ export default class User extends Component {
 			user === null
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
 				: <div className="container-center">
-					<div className="sub-container">
-						<h1>Name : {user.name}</h1>
-						<p>Age : {user.age} years old</p>
-						<p>Type : {user.type}</p>
+					<div className="sub-container user-info">
+						<h3>User's informations :</h3>
+						<p>Name : <span className="blue-text">{user.name}</span></p>
+						<p>Age : <span className="blue-text">{user.age} years old</span></p>
+						<p>Type : <span className="blue-text">{user.type}</span></p>
 
 						<button onClick={() => this.handleDeleteUser()}>Delete User {user.name}</button>
 					</div>

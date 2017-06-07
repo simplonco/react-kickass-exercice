@@ -4,7 +4,11 @@ import './header.css';
 
 const Header = () => (
 	<div id="header">
-		<h1><span className="blue-text">Kick</span>ass <span className="blue-text">S</span>tarter</h1>
+		<Link to="/">
+			<h1>
+				<span className="blue-text">Kick</span>ass <span className="blue-text">S</span>tarter
+		</h1>
+		</Link>
 
 		<ul className="navbar">
 			<li>

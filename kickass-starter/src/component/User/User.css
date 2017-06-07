@@ -9,3 +9,11 @@
 	padding: 20px;
 	margin: 10px;
 }
+
+.user-info button {
+	background-color: #1e99fb;
+	color: #fff;
+	border: none;
+	border-radius: 2px;
+	padding: 10px 15px;
+}
