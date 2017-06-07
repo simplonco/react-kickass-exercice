@@ -41,8 +41,8 @@ class Home extends Component {
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
 				: users.map((user, index) => {
 					return (
-						<li>
-							<Link className="home-user" user={user} to={`/user/${user._id}`}>{user.name}</Link>
+						<li key={index}>
+							<Link className="home-user" to={`/user/${user._id}`}>{user.name}</Link>
 						</li>
 					)
 				})
@@ -57,7 +57,7 @@ class Home extends Component {
 				? <p><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
 				: projects.map((project, index) => {
 					return (
-						<li>
+						<li key={index} >
 							<a className="home-user" href={`/project/${index}`}>{project.title}</a>
 						</li>
 					)

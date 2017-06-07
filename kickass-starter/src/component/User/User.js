@@ -31,12 +31,6 @@ export default class User extends Component {
 			.catch(err => console.log('error ', err));
 	}
 
-
-	// {
-	// 	method: 'POST',
-	// 		headers: { 'Content-Type': 'application/json' },
-	// 	body: JSON.stringify(newProfile)
-	// }
 	render() {
 		const { user } = this.state;
 
@@ -46,9 +40,9 @@ export default class User extends Component {
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
 				: <div className="container-center">
 					<div className="sub-container">
-						<h1>{user.name} Profile</h1>
-						<p>{user.age} years old</p>
-						<p>{user.type} type</p>
+						<h1>Name : {user.name}</h1>
+						<p>Age : {user.age} years old</p>
+						<p>Type : {user.type}</p>
 
 						<button onClick={() => this.handleDeleteUser()}>Delete User {user.name}</button>
 					</div>
