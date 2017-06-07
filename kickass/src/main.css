@@ -1,0 +1,30 @@
+.title {
+  text-align: center;
+}
+
+.list {
+  padding-left: 0px;
+  text-align: center;
+}
+
+.list > a {
+  color: black;
+}
+
+.list > a > li:hover {
+  background-color: lightgrey;
+}
+
+.list-content {
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+}
+
+.list-label {
+  width: 10%;
+}
+
+.list-data {
+  width: 90%;
+}

@@ -1,0 +1,14 @@
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  text-transform: uppercase;
+}
+
+.nav-container, a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
