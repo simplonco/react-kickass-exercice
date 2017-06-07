@@ -5,7 +5,8 @@ class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			users: null
+			users: null,
+			projects: null
 		};
 	}
 
@@ -15,9 +16,18 @@ class Home extends Component {
 			.then(res => {
 				this.setState({
 					users: res
-				})
+				});
 			})
-			.catch(err => console.log('error ', err))
+			.catch(err => console.log('error ', err));
+
+		fetch('https://kickass-sdw-3a.herokuapp.com/api/projects')
+			.then(data => data.json())
+			.then(res => {
+				this.setState({
+					projects: res
+				});
+			})
+			.catch(err => console.log('error ', err));
 	}
 
 
@@ -37,10 +47,37 @@ class Home extends Component {
 		)
 	}
 
+	renderProjects() {
+		const { projects } = this.state;
+
+		return (
+			projects === null
+				? <p>Datas are loading</p>
+				: projects.map(project => {
+					return (
+						<li>
+							<a className="home-user" href={`/project/${project.title}`}>{project.title}</a>
+						</li>
+					)
+				})
+		)
+	}
+
 	render() {
 		return (
-			<div>
-				{this.renderUsers()}
+			<div className="flex-row">
+				<div>
+					<p>Users : </p>
+					<ul>
+						{this.renderUsers()}
+					</ul>
+				</div>
+				<div>
+					<p>Projects :</p>
+					<ul>
+						{this.renderProjects()}
+					</ul>
+				</div>
 			</div>
 		);
 	}

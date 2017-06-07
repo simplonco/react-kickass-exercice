@@ -10,3 +10,7 @@ a {
 	padding: 5px 10px;
 	margin: 2px 0;
 }
+
+.flex-row {
+	display: flex;
+}
