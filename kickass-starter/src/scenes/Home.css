@@ -1,0 +1,12 @@
+a {
+	text-decoration: none;
+}
+
+.home-user {
+	display: block;
+	color: #1e99fb;
+	background-color: #ECECEC;
+	width: 150px;
+	padding: 5px 10px;
+	margin: 2px 0;
+}
