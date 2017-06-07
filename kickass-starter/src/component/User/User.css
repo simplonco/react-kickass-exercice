@@ -1,0 +1,11 @@
+.container-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sub-container {
+	border: 3px solid #545454;
+	padding: 20px;
+	margin: 10px;
+}

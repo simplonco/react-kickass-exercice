@@ -1,13 +1,29 @@
 #header {
-	background-color: #1e99fb;
+	background-color: #545454;
 	color: #fff;
 	width: 100%;
 	box-sizing: border-box;
 	padding: 10px 20px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 #header h1 {
 	margin: 0;
+}
+
+#header a {
+	color: #fff;
+	font-size: 1.1rem;
+}
+
+#header .navbar {
+	display: flex;
+	justify-content: space-between;
+	flex: 0.3;
+}
+
+.blue-text {
+	color: #1e99fb;
 }

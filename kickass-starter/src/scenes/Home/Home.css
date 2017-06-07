@@ -1,0 +1,47 @@
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.home-list {
+	margin: 5px;
+	border: 3px solid #545454;
+	border-radius: 2px;
+}
+
+.home-list>p {
+	text-align: center;
+}
+
+.home-list>li:first-of-type {
+	background-color: #545454;
+	color: #fff;
+	padding: 10px;
+}
+
+
+.home-list a {
+	display: block;
+	color: #1e99fb;
+	background-color: #ECECEC;
+	/*width: 150px;*/
+	padding: 5px 10px;
+	margin: 5px;
+	transition: 0.3s;
+}
+
+.home-list a:hover {
+	background-color: #CDCDCD;
+}
+
+/*.flex-row {
+	display: flex;
+}*/

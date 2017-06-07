@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './component/Header/Header';
-import Home from './scenes/Home';
+import Home from './scenes/Home/Home';
+import NewUser from './scenes/NewUser/NewUser';
+import User from './component/User/User';
 
 class App extends Component {
   render() {
@@ -10,7 +12,8 @@ class App extends Component {
         <div>
           <Header />
           <Route exact path="/" component={Home} />
-          <Route path="/about" render={() => <h1>about</h1>} />
+          <Route path="/newuser" component={NewUser} />
+          <Route path="/user/:userId" component={User} />
         </div>
       </Router>
     );

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { API } from './../../variables';
 import './Home.css';
 
 class Home extends Component {
@@ -11,7 +13,7 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		fetch('https://kickass-sdw-3a.herokuapp.com/api/users')
+		fetch(`${API}/users`)
 			.then(data => data.json())
 			.then(res => {
 				this.setState({
@@ -20,7 +22,7 @@ class Home extends Component {
 			})
 			.catch(err => console.log('error ', err));
 
-		fetch('https://kickass-sdw-3a.herokuapp.com/api/projects')
+		fetch(`${API}/projects`)
 			.then(data => data.json())
 			.then(res => {
 				this.setState({
@@ -36,11 +38,11 @@ class Home extends Component {
 
 		return (
 			users === null
-				? <p>Datas are loading</p>
-				: users.map(user => {
+				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
+				: users.map((user, index) => {
 					return (
 						<li>
-							<a className="home-user" href={`/user/${user.name}`}>{user.name}</a>
+							<Link className="home-user" user={user} to={`/user/${user._id}`}>{user.name}</Link>
 						</li>
 					)
 				})
@@ -52,11 +54,11 @@ class Home extends Component {
 
 		return (
 			projects === null
-				? <p>Datas are loading</p>
-				: projects.map(project => {
+				? <p><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
+				: projects.map((project, index) => {
 					return (
 						<li>
-							<a className="home-user" href={`/project/${project.title}`}>{project.title}</a>
+							<a className="home-user" href={`/project/${index}`}>{project.title}</a>
 						</li>
 					)
 				})
@@ -66,18 +68,15 @@ class Home extends Component {
 	render() {
 		return (
 			<div className="flex-row">
-				<div>
-					<p>Users : </p>
-					<ul>
-						{this.renderUsers()}
-					</ul>
-				</div>
-				<div>
-					<p>Projects :</p>
-					<ul>
-						{this.renderProjects()}
-					</ul>
-				</div>
+				<ul className="home-list">
+					<li>Users : </li>
+					{this.renderUsers()}
+				</ul>
+
+				<ul className="home-list">
+					<li>Projects :</li>
+					{this.renderProjects()}
+				</ul>
 			</div>
 		);
 	}
