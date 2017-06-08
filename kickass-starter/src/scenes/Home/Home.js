@@ -70,8 +70,18 @@ export default class Home extends Component {
 		const { users, projects } = this.state;
 		return (
 			<div className="flex-row">
-				<List datas={users} title="Users :" propertyCalling="name" />
-				<List datas={projects} title="Projects :" propertyCalling="title" />
+				<List
+					datas={users}
+					title="Users :"
+					elementsType="user"
+					propertyCalling="name"
+				/>
+				<List
+					datas={projects}
+					title="Projects :"
+					elementsType="project"
+					propertyCalling="title"
+				/>
 				{/*
 				<ul className="home-list">
 					<li>Users : </li>

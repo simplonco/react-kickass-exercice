@@ -1,0 +1,121 @@
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { API } from './../../variables';
+import './Project.css';
+
+export default class Project extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			project: null,
+			update: false
+		}
+	}
+
+	componentDidMount() {
+		fetch(`${API}/project/${this.props.match.params.projectId}`)
+			.then(res => res.json())
+			.then(project => {
+				this.setState({
+					project: project
+				});
+			})
+			.catch(err => console.log('error ', err));
+	}
+
+	handleUpdateUserBtnClick() {
+		this.setState({
+			update: true,
+			name: this.state.user.name,
+			age: this.state.user.age,
+			type: this.state.user.type
+		});
+	}
+
+	handleFormChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	}
+
+	handleDeleteUser() {
+		fetch(`${API}/user/${this.state.user._id}`, {
+			method: 'DELETE'
+		})
+			.then(data => console.log('user deleted'))
+			.catch(err => console.log('error ', err));
+	}
+
+	handleUpdateUser() {
+		fetch(`${API}/user/${this.state.user._id}`, {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				name: this.state.name,
+				age: this.state.age,
+				type: this.state.type
+			})
+		})
+			.then(res => {
+				return res.json();
+			})
+			.then(user => {
+				console.log('User updated');
+			})
+			.catch(err => {
+				console.log('error ', err);
+			});
+	}
+
+	renderUserInfo() {
+		const { user } = this.state;
+		return (
+			user === null
+				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
+				: <div className="container-center">
+					<div className="sub-container user-info">
+						<h3>User's informations :</h3>
+						<p>Name : <span className="blue-text">{user.name}</span></p>
+						<p>Age : <span className="blue-text">{user.age} years old</span></p>
+						<p>Type : <span className="blue-text">{user.type}</span></p>
+
+						<button onClick={() => this.handleUpdateUserBtnClick()}>Update User's informations' {user.name}</button>
+						<button onClick={() => this.handleDeleteUser()}>Delete User {user.name}</button>
+					</div>
+				</div>
+		)
+	}
+
+	renderUserUpdate() {
+		const { name, age, type, user } = this.state;
+		return (
+			<div>
+				<div className="container-center">
+					<div className="sub-container user-info">
+						<h3>Update User's informations :</h3>
+						<label htmlFor="">Name</label>
+						<input type="text" name="name" value={name} onChange={this.handleFormChange} />
+
+						<label htmlFor="">Age</label>
+						<input type="text" name="age" value={age} onChange={this.handleFormChange} />
+
+						<label htmlFor="">Type</label>
+						<input type="text" name="type" value={type} onChange={this.handleFormChange} />
+
+						<button onClick={() => this.handleUpdateUser()}>Update User {user.name}</button>
+					</div>
+				</div>
+			</div>
+		)
+	}
+
+	render() {
+		const { user, update } = this.state;
+
+		return (
+			update === false
+				? this.renderUserInfo()
+				: this.renderUserUpdate()
+		)
+	}
+};
