@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { API } from './../../variables';
+import List from './../../component/List/List';
 import './Home.css';
 
-class Home extends Component {
+export default class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -66,8 +67,12 @@ class Home extends Component {
 	}
 
 	render() {
+		const { users, projects } = this.state;
 		return (
 			<div className="flex-row">
+				<List datas={users} title="Users :" propertyCalling="name" />
+				<List datas={projects} title="Projects :" propertyCalling="title" />
+				{/*
 				<ul className="home-list">
 					<li>Users : </li>
 					{this.renderUsers()}
@@ -76,10 +81,9 @@ class Home extends Component {
 				<ul className="home-list">
 					<li>Projects :</li>
 					{this.renderProjects()}
-				</ul>
+				</ul>*/}
 			</div>
 		);
 	}
 }
 
-export default Home;
