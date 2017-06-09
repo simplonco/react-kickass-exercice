@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Redirect } from 'react-router-dom';
 import { API } from './../../variables';
 import './User.css';
 
@@ -8,7 +8,8 @@ export default class User extends Component {
 		super(props);
 		this.state = {
 			user: null,
-			update: false
+			update: false,
+			redirectToHome: false
 		}
 	}
 
@@ -42,7 +43,10 @@ export default class User extends Component {
 		fetch(`${API}/user/${this.state.user._id}`, {
 			method: 'DELETE'
 		})
-			.then(data => console.log('user deleted'))
+			.then(data => {
+				console.log('user deleted');
+				this.setState({ redirectToHome: true });
+			})
 			.catch(err => console.log('error ', err));
 	}
 
@@ -61,6 +65,7 @@ export default class User extends Component {
 			})
 			.then(user => {
 				console.log('User updated');
+				window.location.reload();
 			})
 			.catch(err => {
 				console.log('error ', err);
@@ -68,7 +73,14 @@ export default class User extends Component {
 	}
 
 	renderUserInfo() {
-		const { user } = this.state;
+		const { user, redirectToHome } = this.state;
+
+		if (redirectToHome) {
+			return (
+				<Redirect to="/" />
+			)
+		}
+
 		return (
 			user === null
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>

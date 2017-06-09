@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { API } from './../../variables';
+import { Redirect } from 'react-router-dom';
 import './Project.css';
 
 export default class Project extends Component {
@@ -7,7 +8,8 @@ export default class Project extends Component {
 		super(props);
 		this.state = {
 			project: null,
-			update: false
+			update: false,
+			redirectToHome: false
 		}
 	}
 
@@ -40,7 +42,10 @@ export default class Project extends Component {
 		fetch(`${API}/project/${this.state.project._id}`, {
 			method: 'DELETE'
 		})
-			.then(data => console.log('project deleted'))
+			.then(data => {
+				console.log('project deleted');
+				this.setState({ redirectToHome: true });
+			})
 			.catch(err => console.log('error ', err));
 	}
 
@@ -59,6 +64,7 @@ export default class Project extends Component {
 			})
 			.then(user => {
 				console.log('Project updated');
+				window.location.reload();
 			})
 			.catch(err => {
 				console.log('error ', err);
@@ -66,7 +72,14 @@ export default class Project extends Component {
 	}
 
 	renderProjectInfo() {
-		const { project } = this.state;
+		const { project, redirectToHome } = this.state;
+
+		if (redirectToHome) {
+			return (
+				<Redirect to="/" />
+			)
+		}
+
 		return (
 			project === null
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
@@ -85,7 +98,7 @@ export default class Project extends Component {
 	}
 
 	renderUserUpdate() {
-		const { title, description, author, project } = this.state;
+		const { title, description } = this.state;
 		return (
 			<div>
 				<div className="container-center">
@@ -105,7 +118,7 @@ export default class Project extends Component {
 	}
 
 	render() {
-		const { user, update } = this.state;
+		const { update } = this.state;
 
 		return (
 			update === false

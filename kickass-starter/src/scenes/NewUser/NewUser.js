@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { API } from './../../variables';
 
 class CreateUser extends Component {
@@ -7,7 +8,8 @@ class CreateUser extends Component {
 		this.state = {
 			name: "",
 			age: "",
-			type: ""
+			type: "",
+			redirectToHome: false
 		};
 	}
 
@@ -35,6 +37,7 @@ class CreateUser extends Component {
 			})
 			.then(user => {
 				console.log('New user created');
+				this.setState({ redirectToHome: true });
 			})
 			.catch(err => {
 				console.log('error ', err);
@@ -42,21 +45,37 @@ class CreateUser extends Component {
 	}
 
 	render() {
-		const { name, age, type } = this.state;
+		const { name, age, type, redirectToHome } = this.state;
+
+		if (redirectToHome) {
+			return (
+				<Redirect to="/" />
+			)
+		}
+
 		return (
 			<div>
 				{/*<form method="POST" action={`${API}/user`}>*/}
 				<p>
 					<label htmlFor="name">User Name</label>
-					<input type="text" name="name" onChange={this.handleFormChange} value={name} />
+					<input type="text"
+						name="name"
+						onChange={this.handleFormChange}
+						value={name} />
 				</p>
 				<p>
 					<label htmlFor="age">User Age</label>
-					<input type="text" name="age" onChange={this.handleFormChange} value={age} />
+					<input type="text"
+						name="age"
+						onChange={this.handleFormChange}
+						value={age} />
 				</p>
 				<p>
 					<label htmlFor="type">User Type</label>
-					<input type="text" name="type" onChange={this.handleFormChange} value={type} />
+					<input type="text"
+						name="type"
+						onChange={this.handleFormChange}
+						value={type} />
 				</p>
 				<button onClick={() => this.handleFormSubmit()} >Create new user</button>
 				{/*</form>*/}
