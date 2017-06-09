@@ -23,12 +23,11 @@ export default class Project extends Component {
 			.catch(err => console.log('error ', err));
 	}
 
-	handleUpdateUserBtnClick() {
+	handleUpdateProjectBtnClick() {
 		this.setState({
 			update: true,
-			name: this.state.user.name,
-			age: this.state.user.age,
-			type: this.state.user.type
+			title: this.state.project.title,
+			description: this.state.project.description
 		});
 	}
 
@@ -38,71 +37,68 @@ export default class Project extends Component {
 		});
 	}
 
-	handleDeleteUser() {
-		fetch(`${API}/user/${this.state.user._id}`, {
+	handleDeleteProject() {
+		fetch(`${API}/project/${this.state.project._id}`, {
 			method: 'DELETE'
 		})
-			.then(data => console.log('user deleted'))
+			.then(data => console.log('project deleted'))
 			.catch(err => console.log('error ', err));
 	}
 
-	handleUpdateUser() {
-		fetch(`${API}/user/${this.state.user._id}`, {
+	handleUpdateProject() {
+		fetch(`${API}/project/${this.state.project._id}`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				name: this.state.name,
-				age: this.state.age,
-				type: this.state.type
+				title: this.state.title,
+				description: this.state.description,
+				author: this.state.author
 			})
 		})
 			.then(res => {
 				return res.json();
 			})
 			.then(user => {
-				console.log('User updated');
+				console.log('Project updated');
 			})
 			.catch(err => {
 				console.log('error ', err);
 			});
 	}
 
-	renderUserInfo() {
-		const { user } = this.state;
+	renderProjectInfo() {
+		const { project } = this.state;
 		return (
-			user === null
+			project === null
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
 				: <div className="container-center">
 					<div className="sub-container user-info">
-						<h3>User's informations :</h3>
-						<p>Name : <span className="blue-text">{user.name}</span></p>
-						<p>Age : <span className="blue-text">{user.age} years old</span></p>
-						<p>Type : <span className="blue-text">{user.type}</span></p>
+						<h3>Project's informations :</h3>
+						<p>Title : <span className="blue-text">{project.title}</span></p>
+						<p>Description : <span className="blue-text">{project.description}</span></p>
+						{/*<p>Author : <span className="blue-text">{project.creator}</span></p>*/}
 
-						<button onClick={() => this.handleUpdateUserBtnClick()}>Update User's informations' {user.name}</button>
-						<button onClick={() => this.handleDeleteUser()}>Delete User {user.name}</button>
+						<button onClick={() => this.handleUpdateProjectBtnClick()}>Update Project's informations</button>
+						<button onClick={() => this.handleDeleteProject()}>Delete Project</button>
 					</div>
 				</div>
 		)
 	}
 
 	renderUserUpdate() {
-		const { name, age, type, user } = this.state;
+		const { title, description, author, project } = this.state;
 		return (
 			<div>
 				<div className="container-center">
 					<div className="sub-container user-info">
-						<h3>Update User's informations :</h3>
-						<label htmlFor="">Name</label>
-						<input type="text" name="name" value={name} onChange={this.handleFormChange} />
+						<h3>Update Project's informations :</h3>
+						<label htmlFor="">Title</label>
+						<input type="text" name="title" value={title} onChange={this.handleFormChange} />
 
-						<label htmlFor="">Age</label>
-						<input type="text" name="age" value={age} onChange={this.handleFormChange} />
+						<label htmlFor="">Description</label>
+						<textarea type="text" name="description" value={description} onChange={this.handleFormChange} />
 
-						<label htmlFor="">Type</label>
-						<input type="text" name="type" value={type} onChange={this.handleFormChange} />
-
-						<button onClick={() => this.handleUpdateUser()}>Update User {user.name}</button>
+						<button onClick={() => this.handleUpdateProject()}>Update Project</button>
 					</div>
 				</div>
 			</div>
@@ -114,7 +110,7 @@ export default class Project extends Component {
 
 		return (
 			update === false
-				? this.renderUserInfo()
+				? this.renderProjectInfo()
 				: this.renderUserUpdate()
 		)
 	}

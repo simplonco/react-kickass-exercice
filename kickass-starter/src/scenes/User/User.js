@@ -79,8 +79,8 @@ export default class User extends Component {
 						<p>Age : <span className="blue-text">{user.age} years old</span></p>
 						<p>Type : <span className="blue-text">{user.type}</span></p>
 
-						<button onClick={() => this.handleUpdateUserBtnClick()}>Update User's informations' {user.name}</button>
-						<button onClick={() => this.handleDeleteUser()}>Delete User {user.name}</button>
+						<button onClick={() => this.handleUpdateUserBtnClick()}>Update User's informations</button>
+						<button onClick={() => this.handleDeleteUser()}>Delete User</button>
 					</div>
 				</div>
 		)
@@ -102,7 +102,7 @@ export default class User extends Component {
 						<label htmlFor="">Type</label>
 						<input type="text" name="type" value={type} onChange={this.handleFormChange} />
 
-						<button onClick={() => this.handleUpdateUser()}>Update User {user.name}</button>
+						<button onClick={() => this.handleUpdateUser()}>Update User</button>
 					</div>
 				</div>
 			</div>
