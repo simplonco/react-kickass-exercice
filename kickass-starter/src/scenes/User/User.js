@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+
 import { API } from './../../variables';
 import './User.css';
 
@@ -87,7 +87,7 @@ export default class User extends Component {
 	}
 
 	renderUserUpdate() {
-		const { name, age, type, user } = this.state;
+		const { name, age, type } = this.state;
 		return (
 			<div>
 				<div className="container-center">
@@ -110,7 +110,7 @@ export default class User extends Component {
 	}
 
 	render() {
-		const { user, update } = this.state;
+		const { update } = this.state;
 
 		return (
 			update === false

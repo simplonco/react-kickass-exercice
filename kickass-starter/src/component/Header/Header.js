@@ -17,6 +17,9 @@ const Header = () => (
 			<li>
 				<Link to='/newuser'>Create User</Link>
 			</li>
+			<li>
+				<Link to='/newproject'>Create Project</Link>
+			</li>
 		</ul>
 	</div>
 );

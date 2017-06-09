@@ -5,9 +5,9 @@ class CreateProject extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: "",
-			age: "",
-			type: ""
+			title: "",
+			description: "",
+			creator: ""
 		};
 	}
 
@@ -20,13 +20,13 @@ class CreateProject extends Component {
 
 	handleFormSubmit() {
 
-		fetch(`${API}/user`, {
+		fetch(`${API}/project`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				name: this.state.name,
-				age: this.state.age,
-				type: this.state.type
+				title: this.state.title,
+				description: this.state.description,
+				_creator: this.state.creator
 			})
 		})
 			.then(res => {
@@ -34,7 +34,7 @@ class CreateProject extends Component {
 				// this.context.transitionTo('/');
 			})
 			.then(user => {
-				console.log('New user created');
+				console.log('New project created');
 			})
 			.catch(err => {
 				console.log('error ', err);
@@ -42,22 +42,22 @@ class CreateProject extends Component {
 	}
 
 	render() {
-		const { name, age, type } = this.state;
+		const { title, description, creator } = this.state;
 		return (
 			<div>
 				<p>
-					<label htmlFor="name">Project Title</label>
-					<input type="text" name="name" onChange={this.handleFormChange} value={name} />
+					<label htmlFor="title">Project Title</label>
+					<input type="text" name="title" onChange={this.handleFormChange} value={title} />
 				</p>
 				<p>
-					<label htmlFor="age">User Age</label>
-					<input type="text" name="age" onChange={this.handleFormChange} value={age} />
+					<label htmlFor="description">Description</label>
+					<textarea type="text" name="description" onChange={this.handleFormChange} value={description} />
 				</p>
 				<p>
-					<label htmlFor="type">User Type</label>
-					<input type="text" name="type" onChange={this.handleFormChange} value={type} />
+					<label htmlFor="creator">Creator</label>
+					<input type="text" name="creator" onChange={this.handleFormChange} value={creator} />
 				</p>
-				<button onClick={() => this.handleFormSubmit()} >Create new user</button>
+				<button onClick={() => this.handleFormSubmit()} >Create new project</button>
 			</div>
 		);
 	}
