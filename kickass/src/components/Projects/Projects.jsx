@@ -29,15 +29,13 @@ class Projects extends React.Component {
 
   render() {
 
-    let projects = this.renderProjects();
-
     return (
       <div>
         <div className="title jumbotron">
           <h1>Projets</h1>
         </div>
         <ul className="list listgroup">
-          {projects}
+          {this.renderProjects()}
         </ul>
       </div>
     )

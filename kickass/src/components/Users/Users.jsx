@@ -32,14 +32,12 @@ class Users extends React.Component {
 
   render() {
 
-    let users = this.renderUsers();
-
     return (
       <div>
         <div className="title jumbotron">
           <h1>Users</h1>
         </div>
-        <ul className="list list-group">{users}</ul>
+        <ul className="list list-group">{this.renderUsers()}</ul>
       </div>
     )
   }

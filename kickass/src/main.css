@@ -1,3 +1,7 @@
+h1 {
+  text-align: center;
+}
+
 .title {
   text-align: center;
 }
@@ -16,7 +20,6 @@
 }
 
 .list-content {
-  text-align: center;
   text-transform: uppercase;
   display: flex;
 }
@@ -26,5 +29,6 @@
 }
 
 .list-data {
+  text-align: center;
   width: 90%;
 }
