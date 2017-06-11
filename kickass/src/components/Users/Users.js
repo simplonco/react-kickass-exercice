@@ -34,7 +34,9 @@ export class Users extends Component {
         <div>
           <h1>Users</h1>
         </div>
-        <ul>{this.listUsers()}</ul>
+        <div>
+          <ul>{this.listUsers()}</ul>
+        </div>
       </div>
     )
   }
