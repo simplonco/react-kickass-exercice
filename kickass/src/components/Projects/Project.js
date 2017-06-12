@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import './Projects.css';
 
 export class Projects extends Component {
   constructor(props) {
