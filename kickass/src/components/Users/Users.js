@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import './Users.css';
 
 export class Users extends Component {
@@ -7,7 +7,7 @@ export class Users extends Component {
   constructor(props){
     super(props);
     this.state = {
-      users : []
+      users : [],
     };
   }
 
@@ -20,10 +20,10 @@ export class Users extends Component {
   }
 
   listUsers = () => {
-    return this.state.users.map( (user) => {
+    return this.state.users.map( (user, i) => {
         return (
-          <Link to={`/users/${user._id}`}>
-            <li>{user.name}</li>
+            <Link to={`/users/${user._id}`}>
+            <li key={i}>{user.name}</li>
           </Link>
         );
     })
@@ -60,6 +60,17 @@ export class UserProfile extends Component {
     })
   }
 
+  handleDelete = () => {
+    fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.user._id}`, {
+      method: "DELETE",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(<Redirect to="/users" />)
+    .catch(err => console.log('err', err))
+  }
   render(){
     return(
       <div>
@@ -70,6 +81,7 @@ export class UserProfile extends Component {
             <li>Age : {this.state.user.age}</li>
             <li>Type : {this.state.user.type}</li>
           </ul>
+          <button onClick={() => this.handleDelete()}>Supprimer OMG WTF</button>
         </div>
       </div>
     )
