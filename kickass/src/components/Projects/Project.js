@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import './Projects.css';
 
 export class Projects extends Component {
@@ -55,6 +55,17 @@ export class ProjectInfo extends Component {
       this.setState({project: json})
     })
   }
+
+  handleDelete() {
+    fetch(`https://kickass-sdw-3a.herokuapp.com/api/project/${this.state.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(<Redirect to="/project" />)
+    .catch(err => console.log('err', err))
+  }
   render() {
     return(
       <div>
@@ -64,6 +75,7 @@ export class ProjectInfo extends Component {
             <li>Title : {this.state.project.title}</li>
             <li>Description : {this.state.project.description}</li>
           </ul>
+          <button onClick={() => this.handleDelete()}>Supprimer OMG WTF</button>
         </div>
       </div>
     )

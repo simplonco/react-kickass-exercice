@@ -23,7 +23,7 @@ export class Users extends Component {
     return this.state.users.map( (user, i) => {
         return (
             <Link to={`/users/${user._id}`}>
-            <li key={i} className="listNames">{user.name}</li>
+            <li className="listNames">{user.name}</li>
           </Link>
         );
     })

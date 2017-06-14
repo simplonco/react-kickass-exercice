@@ -38,14 +38,14 @@ export default class AddUser extends Component {
     return(
       <div>
         <form>
-        <p>Nom : </p>
-        <input type='text' name='name' value={this.state.name} onChange={this.handleChange}></input>
-        <p>Age : </p>
-        <input type='text' name='age' value={this.state.age} onChange={this.handleChange}></input>
-        <p>Type :</p>
-        <input type='text' name='type' value={this.state.type} onChange={this.handleChange}></input>
-        <button type='submit' onClick={() => this.handleSubmit()}>Submit</button>
-      </form>
+          <p>Nom : </p>
+          <input type='text' name='name' value={this.state.name} onChange={this.handleChange}></input>
+          <p>Age : </p>
+          <input type='text' name='age' value={this.state.age} onChange={this.handleChange}></input>
+          <p>Type :</p>
+          <input type='text' name='type' value={this.state.type} onChange={this.handleChange}></input>
+          <button type='submit' onClick={() => this.handleSubmit()}>Submit</button>
+        </form>
       </div>
     )
   }
