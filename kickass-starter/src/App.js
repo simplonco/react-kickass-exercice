@@ -4,7 +4,7 @@ import Header from './component/Header/Header';
 import Home from './scenes/Home/Home';
 import NewUser from './scenes/NewUser/NewUser';
 import User from './scenes/User/User';
-import NewProject from './scenes/NewProject/NewProject';
+import CreateProject from './scenes/CreateProject/CreateProject';
 import Project from './scenes/Project/Project';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/newuser" component={NewUser} />
           <Route path="/user/:userId" component={User} />
-          <Route path="/newproject" component={NewProject} />
+          <Route path="/newproject" component={CreateProject} />
           <Route path="/project/:projectId" component={Project} />
         </div>
       </Router>

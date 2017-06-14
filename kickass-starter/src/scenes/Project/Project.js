@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { API } from './../../variables';
+import ProjectForm from './../../component/ProjectForm/ProjectForm';
 import './Project.css';
 
 export default class Project extends Component {
@@ -30,15 +31,6 @@ export default class Project extends Component {
 			description: this.state.project.description,
 			creator: this.state.project.creator || "Unknown"
 		});
-
-		fetch(`${API}/users`)
-			.then(data => data.json())
-			.then(res => {
-				this.setState({
-					users: res
-				});
-			})
-			.catch(err => console.log('error ', err));
 	}
 
 	handleFormChange = (e) => {
@@ -56,28 +48,6 @@ export default class Project extends Component {
 				this.setState({ redirectToHome: true });
 			})
 			.catch(err => console.log('error ', err));
-	}
-
-	handleUpdateProject() {
-		fetch(`${API}/project/${this.state.project._id}`, {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				title: this.state.title,
-				description: this.state.description,
-				creator: this.state.creator
-			})
-		})
-			.then(res => {
-				return res.json();
-			})
-			.then(user => {
-				console.log('Project updated');
-				window.location.reload();
-			})
-			.catch(err => {
-				console.log('error ', err);
-			});
 	}
 
 	renderProjectInfo() {
@@ -100,79 +70,17 @@ export default class Project extends Component {
 		)
 	}
 
-	handleUserSearch() {
-		const { users, creator } = this.state;
-
-		if (users === null) {
-			return null;
-		}
-		const replace = creator.toLowerCase();
-		const re = new RegExp(replace, "g");
-
-		let searchUser = users.filter((user) => {
-			return re.test(user.name.toLowerCase());
-		});
-
-		return (
-			(this.state.creator === "" || this.state.creator === "Unknown")
-				? null
-				: (
-					<ul id="user-suggestion">
-						{searchUser.map((user, index) => {
-							console.log(user);
-							return <li key={index} onClick={() => this.setCreatorId(user._id)}>{user.name}</li>
-						})}
-					</ul>
-				)
-		)
-	}
-
-	setCreatorId(userId) {
-		this.setState({
-			creator: userId
-		})
-	}
-
-	renderProjectUpdate() {
-		const { title, description, creator } = this.state;
-
-		return (
-			<div>
-				<div className="container-center">
-					<div className="sub-container user-info">
-						<h3>Update Project's informations :</h3>
-						<p>
-							<label htmlFor="">Title</label>
-							<input type="text" name="title" value={title} onChange={this.handleFormChange} />
-						</p>
-						<p>
-							<label htmlFor="">Description</label>
-							<textarea type="text" name="description" value={description} onChange={this.handleFormChange} />
-						</p>
-						<p>
-							<label htmlFor="">Creator</label>
-							<input type="text" name="creator" value={creator} onChange={this.handleFormChange} />
-
-
-							{this.handleUserSearch()}
-
-
-						</p>
-
-						<button onClick={() => this.handleUpdateProject()}>Update Project</button>
-					</div>
-				</div>
-			</div>
-		)
-	}
-
 	render() {
-		const { update } = this.state;
+		const { update, project } = this.state;
 
 		return (
 			(!update)
 				? this.renderProjectInfo()
-				: this.renderProjectUpdate()
+				: <ProjectForm action="update"
+					title={project.title}
+					description={project.description}
+					creator={project._creator}
+					projectId={project._id} />
 		)
 	}
 };
