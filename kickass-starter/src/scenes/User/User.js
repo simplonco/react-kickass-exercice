@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { API } from './../../variables';
 import './User.css';
 
@@ -103,9 +103,13 @@ export default class User extends Component {
 						<ul>
 							<li>Projects :</li>
 							{
-								this.state.userProjects.map((project, index) => {
-									return <li key={index}>{index + 1}/ {project.title}</li>
-								})
+								(this.state.userProjects.length > 0)
+									? this.state.userProjects.map((project, index) => {
+										return <li key={index}>
+											<Link to={`/project/${project._id}`}> {index + 1} / {project.title}</Link>
+										</li>
+									})
+									: null
 							}
 						</ul>
 

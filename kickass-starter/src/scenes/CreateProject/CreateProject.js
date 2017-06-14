@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ProjectForm from './../../component/ProjectForm/ProjectForm';
 
 const CreateProject = (props) => {

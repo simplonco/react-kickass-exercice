@@ -12,13 +12,16 @@
 #user-suggestion>li {
 	padding: 2px;
 	transition: 0.2s;
+	cursor: pointer;
 }
 
 #user-suggestion>li:hover {
 	background-color: #ECECEC;
 }
 
-.user-info>p {
+.user-info>div {
+	width: 100%;
+	margin: 10px auto;
 	display: flex;
 	justify-content: space-between;
 	position: relative;

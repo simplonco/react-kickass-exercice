@@ -89,12 +89,11 @@ class ProjectForm extends Component {
 				creator: this.state.creator
 			})
 		})
-			.then(res => {
-				return res.json();
-				// this.context.transitionTo('/');
-			})
-			.then(user => {
-				console.log('New project created');
+			.then(project => {
+				(this.props.action === "update")
+					? console.log('Project updated')
+					: console.log('New project created')
+
 				this.setState({ redirectToHome: true });
 			})
 			.catch(err => {
@@ -143,21 +142,21 @@ class ProjectForm extends Component {
 				<div className="container-center">
 					<div className="sub-container user-info">
 						<h3>{(action === "update") ? "Update" : "Create"} project's informations :</h3>
-						<p>
+						<div>
 							<label htmlFor="title">Title</label>
 							<input type="text"
 								name="title"
 								value={title}
 								onChange={this.handleFormChange} />
-						</p>
-						<p>
+						</div>
+						<div>
 							<label htmlFor="description">Description</label>
 							<textarea type="text"
 								name="description"
 								value={description}
 								onChange={this.handleFormChange} />
-						</p>
-						<p>
+						</div>
+						<div>
 							<label htmlFor="creator">Creator</label>
 							<input type="text"
 								name="creator"
@@ -165,7 +164,7 @@ class ProjectForm extends Component {
 								onChange={this.handleFormChange} />
 
 							{this.handleUserSearch()}
-						</p>
+						</div>
 
 						<button
 							onClick={() => {
