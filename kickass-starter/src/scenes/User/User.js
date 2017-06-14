@@ -8,6 +8,7 @@ export default class User extends Component {
 		super(props);
 		this.state = {
 			user: null,
+			userProjects: null,
 			update: false,
 			redirectToHome: false
 		}
@@ -18,10 +19,18 @@ export default class User extends Component {
 			.then(res => res.json())
 			.then(user => {
 				this.setState({
-					user: user
+					user
 				});
 			})
 			.catch(err => console.log('error ', err));
+
+		fetch(`${API}/user/${this.props.match.params.userId}/projects`)
+			.then(res => res.json())
+			.then(userProjects => {
+				this.setState({
+					userProjects
+				})
+			})
 	}
 
 	handleUpdateUserBtnClick() {
@@ -90,6 +99,15 @@ export default class User extends Component {
 						<p>Name : <span className="blue-text">{user.name}</span></p>
 						<p>Age : <span className="blue-text">{user.age} years old</span></p>
 						<p>Type : <span className="blue-text">{user.type}</span></p>
+
+						<ul>
+							<li>Projects :</li>
+							{
+								this.state.userProjects.map((project, index) => {
+									return <li key={index}>{index + 1}/ {project.title}</li>
+								})
+							}
+						</ul>
 
 						<button onClick={() => this.handleUpdateUserBtnClick()}>Update User's informations</button>
 						<button onClick={() => this.handleDeleteUser()}>Delete User</button>

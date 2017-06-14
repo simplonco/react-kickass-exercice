@@ -55,7 +55,7 @@ class CreateUser extends Component {
 
 		return (
 			<div>
-				{/*<form method="POST" action={`${API}/user`}>*/}
+				{/*<form>*/}
 				<p>
 					<label htmlFor="name">User Name</label>
 					<input type="text"
@@ -77,7 +77,7 @@ class CreateUser extends Component {
 						onChange={this.handleFormChange}
 						value={type} />
 				</p>
-				<button onClick={() => this.handleFormSubmit()} >Create new user</button>
+				<input type="submit" onClick={() => this.handleFormSubmit()} value="Create new user" />
 				{/*</form>*/}
 			</div>
 		);

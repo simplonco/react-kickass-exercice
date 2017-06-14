@@ -1,30 +1,44 @@
 import React from 'react';
+import { API } from './../../variables';
 
-const List = ({ title, datas, propertyCalling, elementsType }) => {
+const List = (props) => {
 
-	const renderList = () => {
+	function handleDeleteUser(e, userId) {
+		e.stopPropagation();
+		fetch(`${API}/${props.elementsType}/${userId}`, { method: 'DELETE' })
+			.then(data => {
+				console.log('user deleted');
+				window.location.reload();
+			})
+			.catch(err => console.log('error ', err));
+		console.log('clicked');
+	}
 
+	function renderList() {
 		return (
-			datas === null
+			props.datas === null
 				? <p><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
-				: datas.map((data, index) => {
+				: props.datas.map((data, index) => {
 					return (
-						<li key={index} >
-							<a className="home-user" href={`/${elementsType}/${data._id}`}>
-								{eval('data.' + propertyCalling)}
+						<li
+							style={{ display: "flex" }}
+							key={index} >
+							<a className="home-user" style={{ flex: 1 }} onClick={() => console.log('clicked link')} href={`/${props.elementsType}/${data._id}`}>
+								{eval('data.' + props.propertyCalling)}
 							</a>
+							<button onClick={(e) => handleDeleteUser(e, data._id)}>Delete</button>
 						</li>
 					)
 				})
 		)
 	}
 
-
 	return (
 		<ul className="home-list">
-			<li>{title}</li>
+			<li>{props.title}</li>
 			{renderList()}
 		</ul>
 	)
+
 }
 export default List;

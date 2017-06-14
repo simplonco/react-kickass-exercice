@@ -20,6 +20,22 @@ ul {
 .home-list>p {
 	text-align: center;
 }
+.home-list li {
+	display: flex;
+	align-items: center;
+	background-color: #ECECEC;
+	padding: 5px 10px;
+	margin: 5px;
+	transition: 0.3s;
+}
+
+.home-list a {
+	color: #1e99fb;
+}
+
+.home-list li:hover {
+	background-color: #CDCDCD;
+}
 
 .home-list>li:first-of-type {
 	background-color: #545454;
@@ -27,20 +43,6 @@ ul {
 	padding: 10px;
 }
 
-
-.home-list a {
-	display: block;
-	color: #1e99fb;
-	background-color: #ECECEC;
-	/*width: 150px;*/
-	padding: 5px 10px;
-	margin: 5px;
-	transition: 0.3s;
-}
-
-.home-list a:hover {
-	background-color: #CDCDCD;
-}
 
 /*.flex-row {
 	display: flex;

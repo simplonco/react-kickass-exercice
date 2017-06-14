@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { API } from './../../variables';
-import { Redirect } from 'react-router-dom';
 import './Project.css';
 
 export default class Project extends Component {
@@ -8,8 +7,8 @@ export default class Project extends Component {
 		super(props);
 		this.state = {
 			project: null,
-			update: false,
-			redirectToHome: false
+			users: null,
+			update: false
 		}
 	}
 
@@ -28,8 +27,18 @@ export default class Project extends Component {
 		this.setState({
 			update: true,
 			title: this.state.project.title,
-			description: this.state.project.description
+			description: this.state.project.description,
+			creator: this.state.project.creator || "Unknown"
 		});
+
+		fetch(`${API}/users`)
+			.then(data => data.json())
+			.then(res => {
+				this.setState({
+					users: res
+				});
+			})
+			.catch(err => console.log('error ', err));
 	}
 
 	handleFormChange = (e) => {
@@ -56,7 +65,7 @@ export default class Project extends Component {
 			body: JSON.stringify({
 				title: this.state.title,
 				description: this.state.description,
-				author: this.state.author
+				creator: this.state.creator
 			})
 		})
 			.then(res => {
@@ -72,13 +81,7 @@ export default class Project extends Component {
 	}
 
 	renderProjectInfo() {
-		const { project, redirectToHome } = this.state;
-
-		if (redirectToHome) {
-			return (
-				<Redirect to="/" />
-			)
-		}
+		const { project } = this.state;
 
 		return (
 			project === null
@@ -88,7 +91,7 @@ export default class Project extends Component {
 						<h3>Project's informations :</h3>
 						<p>Title : <span className="blue-text">{project.title}</span></p>
 						<p>Description : <span className="blue-text">{project.description}</span></p>
-						{/*<p>Author : <span className="blue-text">{project.creator}</span></p>*/}
+						<p>Creator : <span className="blue-text">{project._creator || "Unknown"}</span></p>
 
 						<button onClick={() => this.handleUpdateProjectBtnClick()}>Update Project's informations</button>
 						<button onClick={() => this.handleDeleteProject()}>Delete Project</button>
@@ -97,18 +100,64 @@ export default class Project extends Component {
 		)
 	}
 
-	renderUserUpdate() {
-		const { title, description } = this.state;
+	handleUserSearch() {
+		const { users, creator } = this.state;
+
+		if (users === null) {
+			return null;
+		}
+		const replace = creator.toLowerCase();
+		const re = new RegExp(replace, "g");
+
+		let searchUser = users.filter((user) => {
+			return re.test(user.name.toLowerCase());
+		});
+
+		return (
+			(this.state.creator === "" || this.state.creator === "Unknown")
+				? null
+				: (
+					<ul id="user-suggestion">
+						{searchUser.map((user, index) => {
+							console.log(user);
+							return <li key={index} onClick={() => this.setCreatorId(user._id)}>{user.name}</li>
+						})}
+					</ul>
+				)
+		)
+	}
+
+	setCreatorId(userId) {
+		this.setState({
+			creator: userId
+		})
+	}
+
+	renderProjectUpdate() {
+		const { title, description, creator } = this.state;
+
 		return (
 			<div>
 				<div className="container-center">
 					<div className="sub-container user-info">
 						<h3>Update Project's informations :</h3>
-						<label htmlFor="">Title</label>
-						<input type="text" name="title" value={title} onChange={this.handleFormChange} />
+						<p>
+							<label htmlFor="">Title</label>
+							<input type="text" name="title" value={title} onChange={this.handleFormChange} />
+						</p>
+						<p>
+							<label htmlFor="">Description</label>
+							<textarea type="text" name="description" value={description} onChange={this.handleFormChange} />
+						</p>
+						<p>
+							<label htmlFor="">Creator</label>
+							<input type="text" name="creator" value={creator} onChange={this.handleFormChange} />
 
-						<label htmlFor="">Description</label>
-						<textarea type="text" name="description" value={description} onChange={this.handleFormChange} />
+
+							{this.handleUserSearch()}
+
+
+						</p>
 
 						<button onClick={() => this.handleUpdateProject()}>Update Project</button>
 					</div>
@@ -121,9 +170,9 @@ export default class Project extends Component {
 		const { update } = this.state;
 
 		return (
-			update === false
+			(!update)
 				? this.renderProjectInfo()
-				: this.renderUserUpdate()
+				: this.renderProjectUpdate()
 		)
 	}
 };

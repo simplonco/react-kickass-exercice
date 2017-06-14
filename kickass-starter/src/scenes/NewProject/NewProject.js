@@ -28,7 +28,7 @@ class CreateProject extends Component {
 			body: JSON.stringify({
 				title: this.state.title,
 				description: this.state.description,
-				_creator: this.state.creator
+				creator: this.state.creator
 			})
 		})
 			.then(res => {
