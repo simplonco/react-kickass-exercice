@@ -1,0 +1,8 @@
+.userList {
+  display: flex;
+  justify-content: space-around;
+
+}
+.listNames{
+  text-decoration: none;
+}

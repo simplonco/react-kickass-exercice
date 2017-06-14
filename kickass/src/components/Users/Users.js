@@ -23,7 +23,7 @@ export class Users extends Component {
     return this.state.users.map( (user, i) => {
         return (
             <Link to={`/users/${user._id}`}>
-            <li key={i}>{user.name}</li>
+            <li key={i} className="listNames">{user.name}</li>
           </Link>
         );
     })
@@ -36,7 +36,7 @@ export class Users extends Component {
           <h1>Users</h1>
         </div>
         <div>
-          <ul>{this.listUsers()}</ul>
+          <ul className="userList">{this.listUsers()}</ul>
         </div>
       </div>
     )
