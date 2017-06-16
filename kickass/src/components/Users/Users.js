@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, Redirect, Route} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import './Users.css';
 
 export class Users extends Component {
@@ -74,7 +74,7 @@ export class UserProfile extends Component {
     .then(<Redirect to="/users" />)
     .catch(err => console.log('err', err))
   }
-  
+
 //Update un user déjà existant
   handleUpdateSubmit= () => {
     fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.user._id}`, {
@@ -89,7 +89,6 @@ export class UserProfile extends Component {
         type: this.state.type
       })
     })
-    .then(<Redirect to="/users" />)
     .catch( err => console.log('error', err))
   }
 

@@ -45,7 +45,9 @@ export class ProjectInfo extends Component {
     super(props);
     this.state = {
       project : "",
-      id: this.props.match.params.id
+      id: this.props.match.params.id,
+      title:"",
+      description:""
     }
   }
   componentDidMount() {
@@ -56,6 +58,7 @@ export class ProjectInfo extends Component {
     })
   }
 
+// Supprimer un projet
   handleDelete() {
     fetch(`https://kickass-sdw-3a.herokuapp.com/api/project/${this.state.id}`, {
       method: 'DELETE',
@@ -66,6 +69,35 @@ export class ProjectInfo extends Component {
     .then(<Redirect to="/project" />)
     .catch(err => console.log('err', err))
   }
+
+// Update un projet déjà existant
+  handleUpdateSubmit() {
+    fetch(`https://kickass-sdw-3a.herokuapp.com/api/project/${this.state.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: this.state.name,
+        description: this.state.description
+      })
+    })
+    .catch(err => console.log('err', err))
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+  }
+
+  handleUpdate = () => {
+    this.setState({
+      title: this.state.project.title,
+      description: this.state.project.description
+    })
+  }
+  
   render() {
     return(
       <div>
@@ -76,6 +108,15 @@ export class ProjectInfo extends Component {
             <li>Description : {this.state.project.description}</li>
           </ul>
           <button onClick={() => this.handleDelete()}>Supprimer OMG WTF</button>
+        </div>
+        <div>
+          <form>
+            <p>Title : </p>
+            <input type='text' name='title' value={this.state.title} onChange={this.handleChange}></input>
+            <p>Description : </p>
+            <input type='text' name='description' value={this.state.description} onChange={this.handleChange}></input>
+            <button type='submit' onClick={() => this.handleUpdateSubmit()}>Update</button>
+          </form>
         </div>
       </div>
     )
