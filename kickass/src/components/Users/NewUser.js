@@ -22,7 +22,7 @@ export default class AddUser extends Component {
         type: this.state.type
       })
     })
-    .then(res => {res.json()})
+    .then((res) => res.json())
     .catch(err => console.log('error ', err));
   }
 
