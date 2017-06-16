@@ -63,7 +63,7 @@ class ProjectForm extends Component {
 						{searchUser.map((user, index) => {
 							return (
 								<li key={index}
-									onClick={() => this.setCreatorId(user._id)}
+									onClick={() => this.setCreatorId(user)}
 								>{user.name}</li>
 							)
 						})}
@@ -72,9 +72,10 @@ class ProjectForm extends Component {
 		)
 	}
 
-	setCreatorId(userId) {
+	setCreatorId(user) {
 		this.setState({
-			creator: userId
+			creator: user._id,
+			creatorName: user.name
 		})
 	}
 
@@ -82,7 +83,10 @@ class ProjectForm extends Component {
 	handleCreateFormSubmit() {
 		fetch(`${API}/project`, {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Content-Type': 'application/json',
+				'Origin': 'Access-Control-Allow-Origin'
+			},
 			body: JSON.stringify({
 				title: this.state.title,
 				description: this.state.description,
@@ -104,7 +108,10 @@ class ProjectForm extends Component {
 	handleUpdateFormSubmit() {
 		fetch(`${API}/project/${this.props.projectId}`, {
 			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Content-Type': 'application/json',
+				'Origin': 'Access-Control-Allow-Origin'
+			},
 			body: JSON.stringify({
 				title: this.state.title,
 				description: this.state.description,
@@ -122,8 +129,6 @@ class ProjectForm extends Component {
 				console.log('error ', err);
 			});
 	}
-
-
 
 
 	render() {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { API } from './../../variables';
 import './User.css';
+import UserForm from './../../component/UserForm/UserForm';
 
 export default class User extends Component {
 	constructor(props) {
@@ -36,9 +37,9 @@ export default class User extends Component {
 	handleUpdateUserBtnClick() {
 		this.setState({
 			update: true,
-			name: this.state.user.name,
-			age: this.state.user.age,
-			type: this.state.user.type
+			// name: this.state.user.name,
+			// age: this.state.user.age,
+			// type: this.state.user.type
 		});
 	}
 
@@ -62,7 +63,10 @@ export default class User extends Component {
 	handleUpdateUser() {
 		fetch(`${API}/user/${this.state.user._id}`, {
 			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Content-Type': 'application/json',
+				'Origin': 'Access-Control-Allow-Origin'
+			},
 			body: JSON.stringify({
 				name: this.state.name,
 				age: this.state.age,
@@ -121,10 +125,11 @@ export default class User extends Component {
 	}
 
 	renderUserUpdate() {
-		const { name, age, type } = this.state;
+		const { user } = this.state;
 		return (
 			<div>
-				<div className="container-center">
+				<UserForm action="update" name={user.name} age={user.age} type={user.type} userId={user._id} />
+				{/*<div className="container-center">
 					<div className="sub-container user-info">
 						<h3>Update User's informations :</h3>
 						<label htmlFor="">Name</label>
@@ -138,7 +143,7 @@ export default class User extends Component {
 
 						<button onClick={() => this.handleUpdateUser()}>Update User</button>
 					</div>
-				</div>
+				</div>*/}
 			</div>
 		)
 	}

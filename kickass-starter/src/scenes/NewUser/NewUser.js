@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { API } from './../../variables';
+import UserForm from './../../component/UserForm/UserForm';
 
 class CreateUser extends Component {
 	constructor(props) {
@@ -14,73 +15,50 @@ class CreateUser extends Component {
 	}
 
 
-	handleFormChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	}
+	// handleFormChange = (e) => {
+	// 	this.setState({
+	// 		[e.target.name]: e.target.value
+	// 	});
+	// }
 
-	handleFormSubmit() {
+	// handleFormSubmit() {
 
-		fetch(`${API}/user`, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name: this.state.name,
-				age: this.state.age,
-				type: this.state.type
-			})
-		})
-			.then(res => {
-				return res.json();
-				// this.context.transitionTo('/');
-			})
-			.then(user => {
-				console.log('New user created');
-				this.setState({ redirectToHome: true });
-			})
-			.catch(err => {
-				console.log('error ', err);
-			});
-	}
+	// 	fetch(`${API}/user`, {
+	// 		method: 'POST',
+	// 		headers: { 'Content-Type': 'application/json' },
+	// 		body: JSON.stringify({
+	// 			name: this.state.name,
+	// 			age: this.state.age,
+	// 			type: this.state.type
+	// 		})
+	// 	})
+	// 		.then(res => {
+	// 			return res.json();
+	// 			// this.context.transitionTo('/');
+	// 		})
+	// 		.then(user => {
+	// 			console.log('New user created');
+	// 			this.setState({ redirectToHome: true });
+	// 		})
+	// 		.catch(err => {
+	// 			console.log('error ', err);
+	// 		});
+	// }
 
 	render() {
-		const { name, age, type, redirectToHome } = this.state;
+		// const { name, age, type, redirectToHome } = this.state;
 
-		if (redirectToHome) {
-			return (
-				<Redirect to="/" />
-			)
-		}
+		// if (redirectToHome) {
+		// 	return (
+		// 		<Redirect to="/" />
+		// 	)
+		// }
 
 		return (
 			<div>
-				{/*<form>*/}
-				<p>
-					<label htmlFor="name">User Name</label>
-					<input type="text"
-						name="name"
-						onChange={this.handleFormChange}
-						value={name} />
-				</p>
-				<p>
-					<label htmlFor="age">User Age</label>
-					<input type="text"
-						name="age"
-						onChange={this.handleFormChange}
-						value={age} />
-				</p>
-				<p>
-					<label htmlFor="type">User Type</label>
-					<input type="text"
-						name="type"
-						onChange={this.handleFormChange}
-						value={type} />
-				</p>
-				<input type="submit" onClick={() => this.handleFormSubmit()} value="Create new user" />
-				{/*</form>*/}
+				<UserForm action="create" />
 			</div>
-		);
+		)
 	}
 }
 

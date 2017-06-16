@@ -3,15 +3,17 @@ import { API } from './../../variables';
 
 const List = (props) => {
 
-	function handleDeleteUser(e, userId) {
+	function handleDeleteItem(e, itemId) {
 		e.stopPropagation();
-		fetch(`${API}/${props.elementsType}/${userId}`, { method: 'DELETE' })
+		fetch(`${API}/${props.elementsType}/${itemId}`, {
+			method: 'DELETE',
+			headers: { 'Origin': 'Access-Control-Allow-Origin' }
+		})
 			.then(data => {
 				console.log('user deleted');
 				window.location.reload();
 			})
 			.catch(err => console.log('error ', err));
-		console.log('clicked');
 	}
 
 	function renderList() {
@@ -26,7 +28,7 @@ const List = (props) => {
 							<a className="home-user" style={{ flex: 1 }} onClick={() => console.log('clicked link')} href={`/${props.elementsType}/${data._id}`}>
 								{eval('data.' + props.propertyCalling)}
 							</a>
-							<button onClick={(e) => handleDeleteUser(e, data._id)}>Delete</button>
+							<button onClick={(e) => handleDeleteItem(e, data._id)}>Delete</button>
 						</li>
 					)
 				})
