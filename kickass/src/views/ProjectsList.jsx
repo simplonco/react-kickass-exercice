@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import API from './../../variables.js';
+import API from './../variables.js';
 
 
 class Projects extends React.Component {
@@ -23,7 +23,14 @@ class Projects extends React.Component {
     return this.state.projects.map( (project) => {
       return (
         <Link to={`projects/${project._id}`}>
-          <li className="list-group-item">{project.title}</li>
+          <li className="list-element">
+              <h3>{project.title}</h3>
+              <div className="container-img">
+                <img className="img-project" src={'http://www.game-experience.it/wp-content/uploads/2017/06/dragon-ball-fighter-z-299x150.jpg'} alt="illustration-projet"/>
+              </div>
+              {/*<p className="project-description">{project.description}</p>
+                <p>De : {project.creator}</p>*/}
+          </li>
         </Link>
       )
     })
@@ -32,14 +39,12 @@ class Projects extends React.Component {
   render() {
 
     return (
-      <div>
-        <div className="title jumbotron">
-          <h1>Projets</h1>
-        </div>
-        <ul className="list listgroup">
+      <section>
+        <h2 className="main-title">Voici la liste des projets : </h2>
+        <ul className="list">
           {this.renderProjects()}
         </ul>
-      </div>
+      </section>
     )
   }
 }

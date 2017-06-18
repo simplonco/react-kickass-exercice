@@ -29,7 +29,7 @@ class Users extends React.Component {
             <li key={index} className="list-element" >
               <h3>{user.name}</h3>
               <div className="container-img">
-                <img src={'https://s-media-cache-ak0.pinimg.com/736x/28/da/d0/28dad0354b0fe720de843f9acf9c8710.jpg'} alt="photo-profil"></img>
+                <img className="img-profile" src={'https://s-media-cache-ak0.pinimg.com/736x/28/da/d0/28dad0354b0fe720de843f9acf9c8710.jpg'} alt="photo-profil" />
               </div>
             </li>
           </Link>
@@ -43,7 +43,7 @@ class Users extends React.Component {
 
     return (
       <section>
-        <h2>Voici la liste des utilisateurs : </h2>
+        <h2 className="main-title">Voici la liste des utilisateurs : </h2>
         <ul className="list">{this.renderUsers()}</ul>
       </section>
     )

@@ -4,7 +4,7 @@ import './main.css';
 import Home from './views/Home.jsx';
 import UsersList from './views/UsersList.jsx';
 import Navbar from './components/Navbar/Navbar.jsx'
-import Projects from './components/Projects/Projects.jsx';
+import ProjectsList from './views/ProjectsList.jsx';
 import UserProfile from './components/Users/UserProfile.jsx';
 import ProjectPage from './components/Projects/ProjectPage.jsx';
 import UsersForm from './components/Users/UsersForm.jsx';
@@ -24,7 +24,7 @@ class App extends Component
                 <Route exact path="/users" component={UsersList } />
                 <Route path="/users/:id" component={UserProfile} />
                 <Route path="/usersForm" component={UsersForm} />
-                <Route exact path="/projects" component={Projects} />
+                <Route exact path="/projects" component={ProjectsList} />
                 <Route path="/projectsForm" component={ProjectsForm} />
                 <Route path="/projects/:id" component={ProjectPage} />
                 <Route render={() =>
