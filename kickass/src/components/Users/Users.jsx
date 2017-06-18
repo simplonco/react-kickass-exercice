@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import API from './../../variables.js';
 
 class Users extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Users extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://kickass-sdw-3a.herokuapp.com/api/users')
+    fetch(`${API}/users`)
     .then( (res) => res.json())
     .then( json => {
       this.setState({users: json});
@@ -18,12 +19,13 @@ class Users extends React.Component {
   }
 
   renderUsers = () => {
-    return this.state.users.map( (user) => {
+    return this.state.users.map( (user, index) =>
+    {
       if (user.name)
       {
         return (
           <Link to={`/users/${user._id}`}>
-            <li className="list-group-item" >{user.name}</li>
+            <li key={index} className="list-group-item" >{user.name}</li>
           </Link>
         );
       }

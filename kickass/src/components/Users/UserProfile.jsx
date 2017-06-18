@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserProfile.css';
+import API from './../../variables.js';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount = () => {
-      fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.id}`)
+      fetch(`${API}/user/${this.state.id}`)
       .then( res => res.json())
       .then( (json) => {
         this.setState({user: json})

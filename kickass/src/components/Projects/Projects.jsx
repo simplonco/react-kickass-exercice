@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import API from './../../variables.js';
+
 
 class Projects extends React.Component {
   constructor(props) {
@@ -10,7 +12,7 @@ class Projects extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://kickass-sdw-3a.herokuapp.com/api/projects")
+    fetch(`${API}/projects`)
     .then( res => res.json())
     .then( json => {
       this.setState({projects: json});

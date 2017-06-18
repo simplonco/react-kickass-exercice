@@ -6,7 +6,8 @@ import Navbar from './components/Navbar/Navbar.jsx'
 import Projects from './components/Projects/Projects.jsx';
 import UserProfile from './components/Users/UserProfile.jsx';
 import ProjectPage from './components/Projects/ProjectPage.jsx';
-import UsersForm from './components/Forms/Form.jsx';
+import UsersForm from './components/Users/UsersForm.jsx';
+
 
 class App extends Component
 {

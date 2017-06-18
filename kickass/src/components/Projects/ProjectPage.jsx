@@ -1,4 +1,5 @@
 import React from 'react';
+import API from './../../variables.js';
 
 class ProjectPage extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class ProjectPage extends React.Component {
   }
 
   componentDidMount() {
-      fetch(`https://kickass-sdw-3a.herokuapp.com/api/project/${this.state.id}`)
+      fetch(`${API}/project/${this.state.id}`)
       .then( res => res.json())
       .then( (json) => {
         this.setState({project: json})
