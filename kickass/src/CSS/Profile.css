@@ -1,0 +1,31 @@
+.profile-container {
+  background-color: #FFCCBC;
+  width: 60%;
+  min-height: 400px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.profile-content {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #FF6E40;
+  color: white;
+  border: solid 3px white;
+}
+
+.profile-img {
+  width: 80%;
+  height: 80%;
+  border-radius: 80%;
+  transition-duration: 0.4s;
+}
+
+.profile-data {
+  width: 60%;
+  padding: 20px 0px;
+  font-size: 1.6em;
+}

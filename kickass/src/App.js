@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './main.css';
+import Navbar from './components/Navbar/Navbar.jsx'
 import Home from './views/Home.jsx';
 import UsersList from './views/UsersList.jsx';
-import Navbar from './components/Navbar/Navbar.jsx'
 import ProjectsList from './views/ProjectsList.jsx';
-import UserProfile from './components/Users/UserProfile.jsx';
-import ProjectPage from './components/Projects/ProjectPage.jsx';
+import UserProfile from './views/UserProfile.jsx';
+import ProjectProfile from './views/ProjectProfile.jsx';
 import UsersForm from './components/Users/UsersForm.jsx';
 import ProjectsForm from './components/Projects/ProjectsForm.jsx';
 
@@ -26,7 +26,7 @@ class App extends Component
                 <Route path="/usersForm" component={UsersForm} />
                 <Route exact path="/projects" component={ProjectsList} />
                 <Route path="/projectsForm" component={ProjectsForm} />
-                <Route path="/projects/:id" component={ProjectPage} />
+                <Route path="/projects/:id" component={ProjectProfile} />
                 <Route render={() =>
                       <h1>Cette page n'existe pas!</h1>
                     } />

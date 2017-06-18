@@ -4,8 +4,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="home-container">
         <h1 className="main-title">Welcome To KickAss Starter</h1>
+        <div className="bg-img">
+        </div>
       </div>
     );
   }
