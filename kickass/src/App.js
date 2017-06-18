@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './main.css';
-import Users from './components/Users/Users.jsx';
+import Home from './views/Home.jsx';
+import UsersList from './views/UsersList.jsx';
 import Navbar from './components/Navbar/Navbar.jsx'
 import Projects from './components/Projects/Projects.jsx';
 import UserProfile from './components/Users/UserProfile.jsx';
 import ProjectPage from './components/Projects/ProjectPage.jsx';
 import UsersForm from './components/Users/UsersForm.jsx';
-
+import ProjectsForm from './components/Projects/ProjectsForm.jsx';
 
 class App extends Component
 {
   render()
   {
     return (
-      <div className="container">
+      <div>
         <Router>
             <div>
               <Navbar />
               <Switch>
-                <Route exact path="/" render={() => (<h1>Bienvenue</h1>)} />
-                <Route exact path="/users" component={Users} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/users" component={UsersList } />
                 <Route path="/users/:id" component={UserProfile} />
                 <Route path="/usersForm" component={UsersForm} />
                 <Route exact path="/projects" component={Projects} />
+                <Route path="/projectsForm" component={ProjectsForm} />
                 <Route path="/projects/:id" component={ProjectPage} />
                 <Route render={() =>
                       <h1>Cette page n'existe pas!</h1>

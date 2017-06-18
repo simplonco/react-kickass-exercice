@@ -1,34 +1,20 @@
-h1 {
-  text-align: center;
-}
-
-.title {
-  text-align: center;
-}
-
-.list {
-  padding-left: 0px;
-  text-align: center;
-}
-
-.list > a {
+/*basics styles for links*/
+a {
   color: black;
 }
 
-.list > a > li:hover {
-  background-color: lightgrey;
+a:hover {
+  text-decoration: none;
+  color: black;
 }
 
-.list-content {
-  text-transform: uppercase;
-  display: flex;
-}
-
-.list-label {
-  width: 10%;
-}
-
-.list-data {
+/*basics styles for titles*/
+h1,h2, h4,h5,h6 {
   text-align: center;
-  width: 90%;
+  color: #FF5722;
+}
+
+/*basics styles for lists*/
+ul {
+  list-style-type: none;
 }
