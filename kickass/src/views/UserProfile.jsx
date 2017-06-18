@@ -32,6 +32,7 @@ class UserProfile extends React.Component {
               <p>Nom: {this.state.user.name}</p>
               <p>Age: {this.state.user.age}</p>
               <p>Type: {this.state.user.type}</p>
+              <p><button>Modif Info</button></p>
             </div>
           </div>
         </div>

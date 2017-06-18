@@ -10,6 +10,12 @@ const Navbar = () => {
         <li><Link to="/users">Utilisateurs</Link></li>
         <li><Link to="/projects">Projets</Link></li>
         <li>Ajouts</li>
+          <div id="toggle-nav">
+            <span className="line"></span>
+            <span className="line"></span>
+            <span className="line"></span>
+            <span className="line"></span>
+          </div>
       </ul>
     </nav>
   )

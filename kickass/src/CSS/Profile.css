@@ -29,3 +29,15 @@
   padding: 20px 0px;
   font-size: 1.6em;
 }
+button {
+  background-color: #03A9F4;
+  border: none;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+
+@media (max-width: 600px) {
+  .profile-container{
+    width: 90%;
+  }
+}
