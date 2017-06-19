@@ -9,11 +9,13 @@ function fetchUsers(WrappedComponent) {
 		componentDidMount() {
 			fetch(`${API}/users`)
 				.then(data => data.json())
-				.then(result => {
-					console.log('result :', result);
-					this.props.fetchUsersComplete(result);
-				})
+				.then(result => this.props.fetchUsersComplete(result))
 				.catch(err => this.props.fetchError(err));
+
+			fetch(`${API}/projects`)
+				.then(data => data.json())
+				.then(result => this.props.fetchProjectsComplete(result))
+				.catch(err => console.log('error', err));
 		}
 		render() {
 			return (
@@ -25,18 +27,18 @@ function fetchUsers(WrappedComponent) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		fetchUsersComplete: (result) => {
-			dispatch({ type: 'INIT_USERS', result });
-		},
-		fetchError: (error) => {
-			console.log('error :', error);
-		}
+		fetchUsersComplete: (result) => dispatch({ type: 'INIT_USERS', result }),
+		deleteUser: (index) => dispatch({ type: 'DELETE_USER', index }),
+		fetchProjectsComplete: (result) => dispatch({ type: 'INIT_PROJECTS', result }),
+		deleteProject: (index) => dispatch({ type: 'DELETE_PROJECT', index }),
+		fetchError: (error) => console.log('error :', error),
 	}
 }
 
 function mapStateToProps(state) {
 	return {
-		users: state.users
+		users: state.users,
+		projects: state.projects
 	}
 }
 

@@ -31,6 +31,7 @@ ul {
 
 .home-list a {
 	color: #1e99fb;
+	flex: 1;
 }
 
 .home-list li:hover {

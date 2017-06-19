@@ -12,8 +12,6 @@ import NewUser from './scenes/NewUser/NewUser';
 import Project from './scenes/Project/Project';
 import CreateProject from './scenes/CreateProject/CreateProject';
 
-console.log(store.getState());
-
 class App extends Component {
   render() {
     return (

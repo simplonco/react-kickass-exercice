@@ -94,10 +94,7 @@ class ProjectForm extends Component {
 			})
 		})
 			.then(project => {
-				(this.props.action === "update")
-					? console.log('Project updated')
-					: console.log('New project created')
-
+				console.log('New project created')
 				this.setState({ redirectToHome: true });
 			})
 			.catch(err => {

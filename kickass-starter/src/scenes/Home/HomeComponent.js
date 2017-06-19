@@ -9,13 +9,15 @@ const Home = (props) => (
 			title="Users :"
 			elementsType="user"
 			propertyCalling="name"
+			deleteItem={props.deleteUser}
 		/>
-		{/*<List
+		<List
 			datas={props.projects}
 			title="Projects :"
 			elementsType="project"
 			propertyCalling="title"
-		/>*/}
+			deleteItem={props.deleteProject}
+		/>
 	</div >
 )
 

@@ -146,7 +146,7 @@ UserForm.propTypes = {
 
 UserForm.defaultProps = {
 	name: "",
-	age: "",
+	age: 0,
 	type: "",
 	userId: ""
 }

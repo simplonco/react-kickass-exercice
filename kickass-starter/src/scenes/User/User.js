@@ -9,7 +9,7 @@ export default class User extends Component {
 		super(props);
 		this.state = {
 			user: null,
-			userProjects: null,
+			userProjects: [],
 			update: false,
 			redirectToHome: false
 		}
@@ -37,9 +37,6 @@ export default class User extends Component {
 	handleUpdateUserBtnClick() {
 		this.setState({
 			update: true,
-			// name: this.state.user.name,
-			// age: this.state.user.age,
-			// type: this.state.user.type
 		});
 	}
 
@@ -86,7 +83,7 @@ export default class User extends Component {
 	}
 
 	renderUserInfo() {
-		const { user, redirectToHome } = this.state;
+		const { user, redirectToHome, userProjects } = this.state;
 
 		if (redirectToHome) {
 			return (
@@ -107,12 +104,14 @@ export default class User extends Component {
 						<ul>
 							<li>Projects :</li>
 							{
-								(this.state.userProjects.length > 0)
-									? this.state.userProjects.map((project, index) => {
-										return <li key={index}>
-											<Link to={`/project/${project._id}`}> {index + 1} / {project.title}</Link>
+								(userProjects.length > 0)
+									? userProjects.map((project, index) => (
+										<li key={index}>
+											<Link to={`/project/${project._id}`}>
+												{index + 1} / {project.title}
+											</Link>
 										</li>
-									})
+									))
 									: null
 							}
 						</ul>

@@ -1,11 +1,11 @@
 const initialState = [];
 
-function users(state = initialState, action) {
+function projects(state = initialState, action) {
 	switch (action.type) {
-		case 'INIT_USERS':
+		case 'INIT_PROJECTS':
 			return action.result;
 
-		case 'DELETE_USER':
+		case 'DELETE_PROJECT':
 			const newState = state.concat();
 			newState.splice(action.index, 1);
 			return newState;
@@ -15,4 +15,4 @@ function users(state = initialState, action) {
 	}
 }
 
-export default users;
+export default projects;
