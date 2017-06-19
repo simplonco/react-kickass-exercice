@@ -36,8 +36,8 @@ class Navbar extends React.Component {
           <li className={toggleVisibility}><Link to="/projects">Projets</Link></li>
           <li id="dropdown-btn" className={toggleVisibility} onClick={this.handleDropdownButon}>Ajouts
             <ul className={dropdownBtn}>
-              <li className="none"><Link to='/usersForm'>ajouter un utilisateur</Link></li>
-              <li className="none"><Link to='/projectsForm'>ajouter un projet</Link></li>
+              <Link to='/usersForm'><li className="none">ajouter un utilisateur</li></Link>
+              <Link to='/projectsForm'><li className="none">ajouter un projet</li></Link>
             </ul>
           </li>
           <div id="toggle-nav" onClick={this.ToggleNavVisibility}>

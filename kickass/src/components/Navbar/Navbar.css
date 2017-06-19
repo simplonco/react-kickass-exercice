@@ -70,7 +70,7 @@ ul li.active {
   position: relative;
 }
 
-ul.dropdown-list > li {
+ul.dropdown-list > a > li {
   border: solid black 1px;
   padding: 10px;
   background-color: #FFCCBC;
@@ -78,7 +78,7 @@ ul.dropdown-list > li {
   display: block;
 }
 
-ul.dropdown-list > li:hover {
+ul.dropdown-list > a > li:hover {
   background-color: #FF6E40;
 }
 
