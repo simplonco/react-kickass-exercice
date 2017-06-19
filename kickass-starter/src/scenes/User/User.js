@@ -128,22 +128,11 @@ export default class User extends Component {
 		const { user } = this.state;
 		return (
 			<div>
-				<UserForm action="update" name={user.name} age={user.age} type={user.type} userId={user._id} />
-				{/*<div className="container-center">
-					<div className="sub-container user-info">
-						<h3>Update User's informations :</h3>
-						<label htmlFor="">Name</label>
-						<input type="text" name="name" value={name} onChange={this.handleFormChange} />
-
-						<label htmlFor="">Age</label>
-						<input type="text" name="age" value={age} onChange={this.handleFormChange} />
-
-						<label htmlFor="">Type</label>
-						<input type="text" name="type" value={type} onChange={this.handleFormChange} />
-
-						<button onClick={() => this.handleUpdateUser()}>Update User</button>
-					</div>
-				</div>*/}
+				<UserForm action="update"
+					name={user.name}
+					age={user.age}
+					type={user.type}
+					userId={user._id} />
 			</div>
 		)
 	}
@@ -152,7 +141,7 @@ export default class User extends Component {
 		const { update } = this.state;
 
 		return (
-			update === false
+			(!update)
 				? this.renderUserInfo()
 				: this.renderUserUpdate()
 		)
