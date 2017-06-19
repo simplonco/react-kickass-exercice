@@ -49,6 +49,7 @@ class UsersForm extends React.Component
   render()
   {
     let { name, age, type } = this.state;
+    
     return (
       <form onSubmit={ () => {this.handleSubmit}}>
         <Input label="Nom   :" type="text" name="name" placeholder="firstname" onchange={this.handleChange} value={name}/>

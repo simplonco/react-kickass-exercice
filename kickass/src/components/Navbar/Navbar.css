@@ -3,6 +3,7 @@ nav {
   max-height: 70px;
   background-color: #FF5722;
   color: white;
+  box-shadow: 0px 1px 20px black;
 }
 
 .nav-list {
@@ -75,6 +76,10 @@ ul.dropdown-list > li {
   background-color: #FFCCBC;
   color: black;
   display: block;
+}
+
+ul.dropdown-list > li:hover {
+  background-color: #FF6E40;
 }
 
 .none {
