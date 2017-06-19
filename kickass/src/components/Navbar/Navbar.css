@@ -1,6 +1,6 @@
 nav {
   width: 100%;
-  min-height: 80px;
+  max-height: 70px;
   background-color: #FF5722;
   color: white;
 }
@@ -12,14 +12,7 @@ nav {
   flex-wrap: wrap;
 }
 
-ul li.active {
-  display: block;
-  width: 100%;
-  border-top: 1px solid white;
-  padding: 10px;
-}
-
-.nav-list li {
+.nav-list > li {
   padding-right: 30px;
   font-size: 1.3em;
   padding-top: 30px;
@@ -37,6 +30,7 @@ ul li.active {
   display: block;
 }
 
+/*styles hidden/show navbar*/
 #toggle-nav {
   border: solid 1px white;
   border-radius: 10px;
@@ -57,7 +51,43 @@ ul li.active {
   background-color: white;
 }
 
-@media (max-width: 700px) {
+ul li.active {
+  display: block;
+  width: 100%;
+  border-top: 1px solid white;
+  padding: 10px;
+}
+
+/*styles dropdown btn*/
+#dropdown-btn {
+  cursor: pointer;
+}
+
+.dropdown-list {
+  padding-left: 0;
+  z-index: 100;
+  position: relative;
+}
+
+ul.dropdown-list > li {
+  border: solid black 1px;
+  padding: 10px;
+  background-color: #FFCCBC;
+  color: black;
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+
+/*----------------------*/
+/* hide navbar and show toggle button tablet and phone*/
+@media (max-width: 850px) {
+  nav {
+    max-height: 600px;
+  }
   .nav-list li {
     display: none;
   }
