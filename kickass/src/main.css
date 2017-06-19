@@ -23,18 +23,3 @@ h1,h2, h4,h5,h6 {
 ul {
   list-style-type: none;
 }
-
-/*style Home*/
-.home-container {
-  height: 80vh;
-  width: 90vw;
-  margin: auto;
-}
-
-.bg-img {
-  margin: 20px auto;
-  width: 80%;
-  height: 80%;
-  background: url('http://gamebunch.net/wp-content/uploads/2017/06/DBFZ_-Image_Visual.jpg') no-repeat;
-  background-size: cover;
-}

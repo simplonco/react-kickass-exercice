@@ -12,6 +12,13 @@ nav {
   flex-wrap: wrap;
 }
 
+ul li.active {
+  display: block;
+  width: 100%;
+  border-top: 1px solid white;
+  padding: 10px;
+}
+
 .nav-list li {
   padding-right: 30px;
   font-size: 1.3em;
@@ -25,6 +32,7 @@ nav {
 #brand {
   font-size: 2em;
   padding-top: 20px;
+  padding-bottom: 10px;
   text-transform: none;
   display: block;
 }
@@ -35,9 +43,10 @@ nav {
   width: 50px;
   height: 50px;
   cursor: pointer;
-  margin-top: 15px;
-  margin-right: 20px;
   display: none;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 }
 
 .line {
@@ -53,7 +62,7 @@ nav {
     display: none;
   }
   .nav-list {
-    justify-content: space-between;
+    padding-left: 0;
   }
   #toggle-nav {
     display: block;
