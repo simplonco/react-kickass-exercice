@@ -17,15 +17,14 @@ export default class Project extends Component {
 		fetch(`${API}/project/${this.props.match.params.projectId}`)
 			.then(res => res.json())
 			.then(project => {
-
 				fetch(`${API}/user/${project._creator}`)
 					.then(data => data.json())
 					.then(user => {
 						this.setState({
-							project
+							project: project
 						});
 						this.setState({
-							user
+							user: user
 						});
 					})
 					.catch(err => console.log('error', err));

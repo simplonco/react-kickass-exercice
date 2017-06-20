@@ -7,12 +7,15 @@ import { API } from './../../variables';
 function fetchUsers(WrappedComponent) {
 	return class extends Component {
 		componentDidMount() {
-			fetch(`${API}/users`)
+			// GET users infos
+			fetch(`${API}/users`, { method: 'GET' })
 				.then(data => data.json())
 				.then(result => this.props.fetchUsersComplete(result))
 				.catch(err => this.props.fetchError(err));
 
-			fetch(`${API}/projects`)
+
+			// GET projects infos
+			fetch(`${API}/projects`, { method: 'GET' })
 				.then(data => data.json())
 				.then(result => this.props.fetchProjectsComplete(result))
 				.catch(err => console.log('error', err));

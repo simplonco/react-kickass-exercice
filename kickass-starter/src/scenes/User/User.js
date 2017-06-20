@@ -20,7 +20,7 @@ export default class User extends Component {
 			.then(res => res.json())
 			.then(user => {
 				this.setState({
-					user
+					user: user
 				});
 			})
 			.catch(err => console.log('error ', err));
