@@ -26,10 +26,8 @@ class Projects extends React.Component {
           <li className="list-element">
               <h3>{project.title}</h3>
               <div className="container-img">
-                <img className="img-project" src={'http://www.game-experience.it/wp-content/uploads/2017/06/dragon-ball-fighter-z-299x150.jpg'} alt="illustration-projet"/>
+                <img className="img-head img-project" src={'http://www.game-experience.it/wp-content/uploads/2017/06/dragon-ball-fighter-z-299x150.jpg'} alt="illustration-projet"/>
               </div>
-              {/*<p className="project-description">{project.description}</p>
-                <p>De : {project.creator}</p>*/}
           </li>
         </Link>
       )

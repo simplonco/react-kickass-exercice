@@ -3,7 +3,7 @@ nav {
   max-height: 70px;
   background-color: #FF5722;
   color: white;
-  box-shadow: 0px 1px 20px black;
+  box-shadow: 0px 0px 2px 0px black;
 }
 
 .nav-list {
@@ -17,6 +17,8 @@ nav {
   padding-right: 30px;
   font-size: 1.3em;
   padding-top: 30px;
+  transition-property: display;
+  transition-duration: 0.4s;
 }
 
 .nav-list li a {

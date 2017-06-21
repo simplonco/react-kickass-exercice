@@ -6,27 +6,25 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hiddenNav: true,
-      dropdownBtn: true
+      showNav: false,
+      dropdownBtn: false
     }
   }
 
   ToggleNavVisibility = () => {
-    let hidden = this.state.hiddenNav =! this.state.hiddenNav
-    this.setState({hiddenNav: hidden})
+    this.setState({showNav: this.state.hiddenNav =! this.state.hiddenNav})
   }
 
   handleDropdownButon = () => {
-    let hidden = this.state.dropdownBtn =! this.state.dropdownBtn;
-    this.setState({dropdownBtn: hidden})
+    this.setState({dropdownBtn: this.state.dropdownBtn =! this.state.dropdownBtn})
   }
 
   render() {
     const toggleVisibility =
-    this.state.hiddenNav == false ? 'active' : '';
+    this.state.hiddenNav === true ? 'active' : '';
 
     const dropdownBtn =
-    this.state.dropdownBtn == false ? 'dropdown-list' : '';
+    this.state.dropdownBtn === true ? 'dropdown-list' : '';
 
     return (
       <nav>

@@ -7,8 +7,8 @@ import UsersList from './views/UsersList.jsx';
 import ProjectsList from './views/ProjectsList.jsx';
 import UserProfile from './views/UserProfile.jsx';
 import ProjectProfile from './views/ProjectProfile.jsx';
-import UsersForm from './components/Users/UsersForm.jsx';
-import ProjectsForm from './components/Projects/ProjectsForm.jsx';
+import UsersForm from './views/UsersForm.jsx';
+import ProjectsForm from './views/ProjectsForm.jsx';
 
 class App extends Component
 {

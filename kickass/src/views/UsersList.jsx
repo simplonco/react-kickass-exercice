@@ -20,27 +20,23 @@ class Users extends React.Component {
   }
 
   renderUsers = () => {
-    return this.state.users.map( (user, index) =>
-    {
-      if (user.name)
-      {
+    return this.state.users.map( (user, index) => {
+
         return (
           <Link to={`/users/${user._id}`}>
             <li key={index} className="list-element" >
               <h3>{user.name}</h3>
               <div className="container-img">
-                <img className="img-profile" src={'https://s-media-cache-ak0.pinimg.com/736x/28/da/d0/28dad0354b0fe720de843f9acf9c8710.jpg'} alt="photo-profil" />
+                <img className=" img-head img-profile" src={'https://s-media-cache-ak0.pinimg.com/736x/28/da/d0/28dad0354b0fe720de843f9acf9c8710.jpg'} alt="profil" />
               </div>
             </li>
           </Link>
         );
-      }
+
     })
   }
 
-
   render() {
-
     return (
       <section>
         <h2 className="main-title">Voici la liste des utilisateurs : </h2>

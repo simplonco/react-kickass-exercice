@@ -1,0 +1,70 @@
+.container-form {
+  width: 30%;
+  margin: 150px auto;
+  box-shadow: 0px 0px 2px 0px black;
+  overflow: hidden;
+}
+
+form {
+  padding: 30px;
+}
+
+legend {
+  text-align: center;
+}
+
+label {
+  width: 100%;
+  padding-top: 10px;
+}
+
+label:focus input {
+  color: blue;
+}
+
+.container-input {
+
+}
+
+input {
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  transition-duration: 0.4s;
+}
+
+input:focus {
+  border: none;
+  color: blue;
+}
+
+input:required {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.container-btn {
+  text-align: center;
+}
+
+
+@media (max-width : 1200px) {
+  .container-form {
+    width: 50%;
+  }
+}
+
+@media (max-width : 800px) {
+  .container-form {
+    width: 70%;
+  }
+}
+
+@media (max-width : 530px) {
+  .container-form {
+    width: 90%;
+  }
+}

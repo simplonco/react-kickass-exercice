@@ -23,3 +23,17 @@ h1,h2, h4,h5,h6 {
 ul {
   list-style-type: none;
 }
+
+/*styles btns*/
+button {
+  padding: 10px 10px;
+  border-radius: 3px;
+  min-width: 100px;
+  box-shadow: 0px 0px 2px 0px black;
+  transition-duration: 0.4s;
+}
+
+button:active {
+  transform: scale(1.10, 1.10);
+
+}
