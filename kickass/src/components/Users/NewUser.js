@@ -10,7 +10,7 @@ export default class AddUser extends Component {
     }
   }
   handleSubmit = () => {
-    fetch('https://kickass-sdw-3a.herokuapp.com/api/user', {
+    fetch(`'https://kickass-sdw-3a.herokuapp.com/api/user'`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

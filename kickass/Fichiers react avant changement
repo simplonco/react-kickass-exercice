@@ -1,0 +1,211 @@
+Users =
+componentDidMount() {
+  fetch('https://kickass-sdw-3a.herokuapp.com/api/users')
+  .then( (res) => res.json())
+  .then( json => {
+    this.setState({users: json});
+  });
+}
+
+listUsers = () => {
+  return this.state.users.map( (user, i) => {
+      return (
+          <Link to={`/users/${user._id}`}>
+          <li className="listNames">{user.name}</li>
+        </Link>
+      );
+  })
+}
+
+render() {
+  return (
+    <div>
+      <div>
+        <h1>Users</h1>
+      </div>
+      <div>
+        <ul className="userList">{this.listUsers()}</ul>
+      </div>
+    </div>
+  )
+}
+}
+
+export class UserProfile extends Component {
+constructor(props) {
+  super(props);
+  this.state = {
+    user: "",
+    id: this.props.match.params.id,
+    name: "",
+    age: "",
+    type:"",
+  }
+}
+
+componentDidMount = () => {
+  fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.id}`)
+  .then((res) => res.json())
+  .then((json) => {
+    this.setState({user: json})
+  })
+}
+// Supprimer un utilisateur
+handleDelete = () => {
+  fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.user._id}`, {
+    method: "DELETE",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  })
+  .then(<Redirect to="/users" />)
+  .catch(err => console.log('err', err))
+}
+
+//Update un user déjà existant
+handleUpdateSubmit= () => {
+  fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.user._id}`, {
+    method: "PUT",
+    headers: {
+      'Accept' : 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: this.state.name,
+      age: this.state.age,
+      type: this.state.type
+    })
+  })
+  .catch( err => console.log('error', err))
+}
+
+handleChange = (e) => {
+  this.setState({
+    [e.target.name]: e.target.value,
+  })
+}
+
+handleUpdate = () => {
+  this.setState ({
+    name: this.state.user.name,
+    age: this.state.user.age,
+    type: this.state.user.type
+  })
+}
+
+render(){
+  return(
+    <div>
+      <h1>Profile : </h1>
+      <div>
+        <ul>
+          <li>Nom : {this.state.user.name}</li>
+          <li>Age : {this.state.user.age}</li>
+          <li>Type : {this.state.user.type}</li>
+        </ul>
+        <button onClick={() => this.handleDelete()}>Supprimer l'utilisateur</button>
+      </div>
+      <div>
+        <form>
+          <p>Nom : </p>
+          <input type='text' name='name' value={this.state.name} onChange={this.handleChange}></input>
+          <p>Age : </p>
+          <input type='text' name='age' value={this.state.age} onChange={this.handleChange}></input>
+          <p>Type :</p>
+          <input type='text' name='type' value={this.state.type} onChange={this.handleChange}></input>
+          <button type='submit' onClick={() => this.handleUpdateSubmit()}>Update</button>
+        </form>
+      </div>
+    </div>
+  )
+}
+}
+
+NewUser =
+
+handleSubmit = () => {
+  fetch(`'https://kickass-sdw-3a.herokuapp.com/api/user'`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: this.state.name,
+      age: this.state.age,
+      type: this.state.type
+    })
+  })
+  .then((res) => res.json())
+  .catch(err => console.log('error ', err));
+}
+
+handleChange = (e) => {
+  this.setState({
+    [e.target.name]: e.target.value
+  })
+}
+
+render() {
+  console.log('age ' + this.state.age)
+  console.log('name '+ this.state.name)
+  return(
+    <div>
+      <form>
+        <p>Nom : </p>
+        <input type='text' name='name' value={this.state.name} onChange={this.handleChange}></input>
+        <p>Age : </p>
+        <input type='text' name='age' value={this.state.age} onChange={this.handleChange}></input>
+        <p>Type :</p>
+        <input type='text' name='type' value={this.state.type} onChange={this.handleChange}></input>
+        <button type='submit' onClick={() => this.handleSubmit()}>Submit</button>
+      </form>
+    </div>
+  )
+}
+}
+
+
+App =
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import {Users, UserProfile} from './components/Users/Users';
+import {Projects, ProjectInfo} from './components/Projects/Project';
+import AddUser from './components/Users/NewUser';
+import AddProject from './components/Projects/NewProject';
+
+import './App.css';
+
+
+const Links = () => (
+  <nav>
+    <NavLink className="navbar" to="/">Home </NavLink>
+    <NavLink className="navbar" to="/users">Users </NavLink>
+    <NavLink className="navbar" to='/projects'>Projects</NavLink>
+    <NavLink className="navbar" to='/adduser'>New User ?</NavLink>
+    <NavLink className="navbar" to="/addproject">New Project ?</NavLink>
+  </nav>
+)
+export default class App extends Component {
+
+
+  render() {
+    return (
+      <div>
+        <Router>
+          <div>
+            <Links />
+            <Route exact path='/' render={() => (<h1 className="welcome">Welcome in hell</h1>)}/>
+            <Route exact path='/users' component={Users} />
+            <Route path='/users/:id' component={UserProfile} />
+            <Route exact path='/projects' component={Projects} />
+            <Route path='/projects/:id' component={ProjectInfo} />
+            <Route path='/adduser' component={AddUser} />
+            <Route path='/addproject' component={AddProject} />
+          </div>
+        </Router>
+      </div>
+    )
+  };
+}

@@ -4,21 +4,6 @@ import './Users.css';
 
 export class Users extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      users : [],
-    };
-  }
-
-  componentDidMount() {
-    fetch('https://kickass-sdw-3a.herokuapp.com/api/users')
-    .then( (res) => res.json())
-    .then( json => {
-      this.setState({users: json});
-    });
-  }
-
   listUsers = () => {
     return this.state.users.map( (user, i) => {
         return (
