@@ -1,0 +1,21 @@
+body{
+  font-family: sans-serif;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+.navbar {
+  text-decoration: none;
+  padding-top: 3vh;
+  color: black;
+}
+.navbar:hover {
+  text-decoration: underline;
+}
+.welcome {
+  margin: 18%;
+  font-size: 5em;
+}
