@@ -11,7 +11,7 @@ const port = process.env.port || 3000;
 // DB Connection
 
 mongoose.connect(db)
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json())
 
 // API's route
@@ -35,13 +35,20 @@ router.route('/users')
     })
   })
 router.route('/user')
+  .get((req,res) => {
+    userHolder.findById(req.params.user, (err, user) => {
+      if(err)
+        res.send(err)
+      res.json(user)
+    })
+  })
   .post((req, res) => {
     const user = new userHolder()
     user.name = req.body.name;
     user.age = req.body.age;
     user.type = req.body.type;
 
-    user.save((err) => {
+    user.save(() => {
       res.sendFile(path.join(__dirname + '/added.html'))
     })
   })
@@ -67,7 +74,7 @@ router.route('/user/:user_id')
         if(err)
           res.send(err);
 
-        res.sendFiles(path.join(__dirname + 'src/App.js'))
+        res.sendFile(path.join(__dirname + '/edit.html'))
       })
     })
   })

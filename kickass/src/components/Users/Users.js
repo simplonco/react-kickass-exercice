@@ -3,6 +3,20 @@ import {Link, Redirect} from 'react-router-dom';
 import './Users.css';
 
 export class Users extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      users: [],
+    }
+  }
+
+  componentDidMount() {
+    fetch(`${window.location.origin}/api/users`)
+    .then( (res) => res.json())
+    .then( json => {
+      this.setState({users: json});
+    });
+  }
 
   listUsers = () => {
     return this.state.users.map( (user, i) => {
@@ -39,9 +53,8 @@ export class UserProfile extends Component {
       type:"",
     }
   }
-
   componentDidMount = () => {
-    fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.id}`)
+    fetch(`${window.location.origin}/api/user/${this.state.id}`)
     .then((res) => res.json())
     .then((json) => {
       this.setState({user: json})
@@ -49,7 +62,7 @@ export class UserProfile extends Component {
   }
  // Supprimer un utilisateur
   handleDelete = () => {
-    fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.user._id}`, {
+    fetch(`${window.location.origin}/api/user/${this.state.user._id}`, {
       method: "DELETE",
       headers: {
         'Accept': 'application/json',
@@ -62,7 +75,7 @@ export class UserProfile extends Component {
 
 //Update un user déjà existant
   handleUpdateSubmit= () => {
-    fetch(`https://kickass-sdw-3a.herokuapp.com/api/user/${this.state.user._id}`, {
+    fetch(`${window.location.origin}/api/user/${this.state.user._id}`, {
       method: "PUT",
       headers: {
         'Accept' : 'application/json',

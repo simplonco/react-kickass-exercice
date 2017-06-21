@@ -18,20 +18,6 @@ const Links = () => (
   </nav>
 )
 export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      users: [],
-    }
-  }
-
-  componentDidMount() {
-    fetch(`${window.location.origin}/users`)
-    .then( (res) => res.json())
-    .then( json => {
-      this.setState({users: json});
-    });
-  }
 
   render() {
     return (
