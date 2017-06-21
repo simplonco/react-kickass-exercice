@@ -34,7 +34,7 @@ router.route('/users')
       res.json(user);
     })
   })
-router.route('/api/user')
+router.route('/user')
   .post((req, res) => {
     const user = new userHolder()
     user.name = req.body.name;
@@ -42,7 +42,7 @@ router.route('/api/user')
     user.type = req.body.type;
 
     user.save((err) => {
-      res.sendFile(path.join(__dirname + 'added.html'))
+      res.sendFile(path.join(__dirname + '/added.html'))
     })
   })
 router.route('/user/:user_id')
