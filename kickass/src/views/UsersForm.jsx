@@ -11,7 +11,6 @@ class UsersForm extends Component {
        age: '',
        type: '',
      };
-
      this.handleFormSubmit = this.handleFormSubmit.bind(this);
    }
 
@@ -42,6 +41,19 @@ class UsersForm extends Component {
     }
   }
 
+  onFocusInput = (event) => {
+    event.target.parentElement.classList.add('is-focused');
+    event.target.parentElement.classList.add('has-label');
+
+  }
+
+  onBlurInput = (event) => {
+    if (event.target.value.length === 0 ) {
+      event.target.parentElement.classList.remove('is-focused')
+    }
+    event.target.parentElement.classList.remove('has-label')
+  }
+
   render() {
     let { name, age, type } = this.state;
 
@@ -49,23 +61,19 @@ class UsersForm extends Component {
       <div className="container-form">
         <form onSubmit={this.handleFormSubmit}>
           <legend>Créer un nouvel utilisateur : </legend>
-
-          <div className="container-input">
-            <label for="name">
-              <input className="test" type="text" id="name" name="name" placeholder="Tapez votre nom..." onChange={this.handleFormChange} value={name} required />
-            </label>
+          <div className="field">
+            <label className="field-label" for="name">Name</label>
+              <input className="field-input" type="text" id="name" name="name"  onChange={this.handleFormChange} value={name} required onFocus={this.onFocusInput} onBlur={this.onBlurInput}/>
+          </div>
+          <div className="field">
+            <label className="field-label" for="age">Âge</label>
+              <input className="field-input" type="text" id="age" name="age"  onChange={this.handleFormChange} value={age} required onFocus={this.onFocusInput} onBlur={this.onBlurInput}/>
+          </div>
+          <div className="field">
+            <label className="field-label" for="type">Type</label>
+              <input className="field-input" type="text" id="type" name="type"  onChange={this.handleFormChange} value={type} required onFocus={this.onFocusInput} onBlur={this.onBlurInput}/>
           </div>
 
-          <div className="container-input">
-            <label for="age">
-              <input type="text" id="age" name="age" placeholder="Tapez votre âge..." onChange={this.handleFormChange} value={age} required/>
-            </label>
-          </div>
-          <div className="container-input">
-            <label for="type">
-              <input type="text" id="type" name="type" placeholder="Tapez votre type..." onChange={this.handleFormChange} value={type} required/>
-            </label>
-          </div>
           <div className="container-btn">
             <Button type="submit" value="Valider" backgroundColor="#03A9F4" color="white" />
           </div>

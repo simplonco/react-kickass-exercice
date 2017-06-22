@@ -13,33 +13,68 @@ legend {
   text-align: center;
 }
 
-label {
+.field {
+  position: relative;
+  padding: 16px 0 8px 0;
+}
+
+.field-label {
+  position: relative;
+  display: block;
   width: 100%;
+  line-height: 16px;
   padding-top: 10px;
-}
-
-label:focus input {
-  color: blue;
-}
-
-.container-input {
-
-}
-
-input {
-  width: 100%;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid black;
+  font-size: 16px;
+  font-weight: 400;
+  transform: translateY(24px);
+  transform-origin: top left;
   transition-duration: 0.4s;
 }
 
-input:focus {
+.field-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 16px;
+  padding: 8px 0;
+  -webkit-appearance: none;
   border: none;
-  color: blue;
+  outline: none;
+  background-color: transparent;
+  transition-duration: 0.4s;
 }
 
-input:required {
+.field::after {
+  content:'';
+  height: 2px;
+  width: 100%;
+  position:absolute;
+  bottom:6;
+  left:0;
+  /*background-color: #EF6C00;*/
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.is-focused::after {
+  transform: scaleX(1);
+}
+
+.is-focused .field-label {
+  /*color: #EF6C00;*/
+  transform: translateY(0);
+  transform: scale(0.8);
+}
+
+.has-label .field-label {
+  color: #EF6C00;
+}
+
+.field.has-label::after {
+  background-color: #EF6C00;
+}
+
+.field-input:required {
   border-color: inherit;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -49,7 +84,6 @@ input:required {
 .container-btn {
   text-align: center;
 }
-
 
 @media (max-width : 1200px) {
   .container-form {
