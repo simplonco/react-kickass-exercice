@@ -10,8 +10,6 @@ import ProjectProfile from './views/ProjectProfile.jsx';
 import UsersForm from './views/UsersForm.jsx';
 import ProjectsForm from './views/ProjectsForm.jsx';
 
-import TestForm from './views/testForm.jsx';
-
 class App extends Component
 {
   render()
@@ -23,9 +21,6 @@ class App extends Component
               <Navbar />
               <Switch>
                 <Route exact path="/" component={Home} />
-
-                <Route path="/testForm" component={TestForm} />
-
                 <Route exact path="/users" component={UsersList } />
                 <Route path="/users/:id" component={UserProfile} />
                 <Route path="/usersForm" component={UsersForm} />

@@ -1,5 +1,6 @@
 import React from 'react'
 import API from '../variables.js'
+import Input from '../components/Forms/Input.jsx'
 import Button from '../components/Button.jsx'
 
 class ProjectsForm extends React.Component {
@@ -13,7 +14,7 @@ class ProjectsForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange = (e) => {
+  handleFormChange = (e) => {
     let target = e.target.name
     let value = e.target.value
     this.setState({[target]: value})
@@ -21,40 +22,44 @@ class ProjectsForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    fetch(`${API}/project`, {
+    if (window.confirm(` Êtes-vous de vouloir créer le projet ${this.state.title} ?`)) {
+      fetch(`${API}/project`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept' : 'application/json',
         },
         body: JSON.stringify({
-            title: this.state.title,
-            description: this.state.description,
+          title: this.state.title,
+          description: this.state.description,
         })
       })
-      .then( (result) => console.log(`Le projet ${this.state.title} a été créé ${result}`))
+      .then( (result) => console.log(`Le projet ${this.state.title} a été créé`))
       .catch( (err) => console.log(`Le projet ${this.state.title} n'a pas été créé ${err}`))
+    }
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="container-form">
         <form onSubmit={this.handleSubmit}>
           <legend>Ajouter un projet : </legend>
-          <div className="field">
-            <label className="field-label" for="title">Titre</label>
-              <input className="field-input" type="text" id="title" name="title" onChange={this.handleChange} value={this.state.title}/>
-          </div>
-          <div className="field">>
-            <label className="field-label" for="description">Description</label>
-              <input className="field-input" type="text" id="description" name="description" placeholder="description d'un projet super cool qui consiste à..." onChange={this.handleChange} value={this.state.description}/>
-          </div>
-          {/*<div>
-            <label for="creator">
-              <input type="text" id="creator" name="creator" placeholder="Auteur" onChange={this.handleChange} value={this.state.creator}/>
-            </label>
-          </div>*/}
+          <Input forLabel="title" nameLabel="Titre"
+            type="text"
+            name="title"
+            value={this.state.title}
+            required="required"
+            onChange={this.handleFormChange}
+            />
+
+          <Input forLabel="description" nameLabel="Description"
+              type="text"
+              name="description"
+              value={this.state.description}
+              required="required"
+              onChange={this.handleFormChange}
+              />
+
           <div className="container-btn">
             <Button type="submit" value="Valider" color="white"/>
           </div>

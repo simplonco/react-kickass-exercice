@@ -23,7 +23,7 @@ class UsersForm extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    if (window.confirm(`Êtes-vous sur de vouloir créer l'utilisateur ${this.state.name}`)) {
+    if (window.confirm(`Êtes-vous sur de vouloir créer l'utilisateur ${this.state.name} ?`)) {
       fetch(`${API}/user`, {
         method: 'POST',
         headers: {
@@ -36,7 +36,7 @@ class UsersForm extends Component {
           type: this.state.type
         })
       })
-      .then( (result) => console.log(`L'utilisateur ${this.state.name} a été créé ${result}`))
+      .then( (result) => console.log(`L'utilisateur ${this.state.name} a été créé`))
       .catch( (err) => console.log(`L'utilisateur n' a pas été créé ${err}`));
     }
   }
