@@ -32,6 +32,7 @@ class Input extends  Component {
           value={this.props.value}
           placeholder={this.props.placeholder}
           required={this.props.required}
+          maxLength={this.props.maxLength}
           onChange={this.props.onChange}
           onFocus={this.onFocusInput}
           onBlur={this.onBlurInput}/>
@@ -39,6 +40,5 @@ class Input extends  Component {
     )
   }
 }
-
 
 export default Input;

@@ -11,6 +11,10 @@ class Users extends React.Component {
     }
   }
 
+  componentWillMount() {
+
+  }
+
   componentDidMount() {
     fetch(`${API}/users`)
     .then( (res) => res.json())
