@@ -16,22 +16,22 @@ class FormUser extends Component {
      };
      this.handleFormSubmit = this.handleFormSubmit.bind(this);
      this.handleFormUpdate = this.handleFormUpdate.bind(this);
-   }
+   };
 
    showForm = () => {
-     this.setState({showUpdateForm: this.showUpdateForm =! this.showUpdateForm})
-   }
+     this.setState({showUpdateForm: this.showUpdateForm =! this.showUpdateForm});
+   };
 
   handleFormChange = (event) => {
      this.setState({
          [event.target.name]: event.target.value
        });
-   }
+   };
 
   handleFormSubmit(event) {
     event.preventDefault();
     if (window.confirm(`Êtes-vous sur de vouloir créer l'utilisateur ${this.state.name} ?`)) {
-      fetch(`${API}/user`, {
+      fetch(`${API}/${this.props.submitParameters}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,8 +48,8 @@ class FormUser extends Component {
         this.setState({redirect: true});
       })
       .catch( (err) => console.log(`L'utilisateur n' a pas été créé ${err}`));
-    }
-  }
+    };
+  };
 
   handleFormUpdate(e) {
     e.preventDefault();
@@ -68,43 +68,43 @@ class FormUser extends Component {
       })
       .then ( res => {
         console.log(`L'utilisateur a bien été mis à jour`);
-      }
-    )
-    .catch ( err => console.log(`Une erreur s'est produite, ${err}`))
-    }
-  }
+      })
+      .catch ( err => console.log(`Une erreur s'est produite, ${err}`))
+      };
+    };
 
   render() {
     let { name, age, type, redirect } = this.state
     const { method } = this.props
 
-    return (
-      <div className={this.props.classContainerForm}>
-              <form
-                onSubmit={(method === 'update') ?
+        return (
+          <div className={this.props.classContainerForm}>
+
+            <form
+              onSubmit={(method === 'update') ?
                 this.handleFormUpdate
                 :
                 this.handleFormSubmit}
                 className={this.props.classForm}
                 >
-              <legend>{(method === 'update') ?
-                'Mettre à jour l'
-                :
-                'Créer un nouvel '
-              } utilisateur :
+                <legend>{(method === 'update') ?
+                  'Mettre à jour l'
+                  :
+                  'Créer un nouvel '
+                } utilisateur :
               </legend>
 
-            <Input forLabel="name"
-              nameLabel="Prénom"
-              type="text"
-              name="name"
-              value={name}
-              required="required"
-              maxLength="15"
-              onChange={this.handleFormChange}
-            />
+              <Input forLabel="name"
+                nameLabel="Prénom"
+                type="text"
+                name="name"
+                value={name}
+                required="required"
+                maxLength="15"
+                onChange={this.handleFormChange}
+                />
 
-            <Input forLabel="age"
+              <Input forLabel="age"
                 nameLabel="Âge"
                 type="text"
                 name="age"
@@ -112,7 +112,7 @@ class FormUser extends Component {
                 required="required"
                 maxLength="3"
                 onChange={this.handleFormChange}
-              />
+                />
 
               <Input forLabel="type"
                 nameLabel="Type"
@@ -122,28 +122,28 @@ class FormUser extends Component {
                 required="required"
                 maxLength="10"
                 onChange={this.handleFormChange}
-              />
+                />
 
               <div className="container-btn">
                 <Button type="submit"
                   value="Valider"
                   />
                 {(method === 'update') ?
-                    <Button value="close"
-                      backgroundColor=" #009688" onClick={this.props.showForm}
-                      type="button"
-                      />
-                    :
-                    ''
-                  }
+                  <Button value="close"
+                    backgroundColor=" #009688" onClick={this.props.showForm}
+                    type="button"
+                    />
+                  :
+                  ''
+                }
               </div>
-        </form>
-        {redirect && (
-          <Redirect to='/users' />
-        )}
-      </div>
-    )
-  }
-}
+            </form>
+            {redirect && (
+              <Redirect to='/users' />
+            )}
+          </div>
+        )
+      }
+    }
 
 export default FormUser;
