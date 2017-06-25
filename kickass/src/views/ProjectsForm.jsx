@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import API from '../variables.js'
 import Input from '../components/Forms/Input.jsx'
 import Button from '../components/Button.jsx'
@@ -9,6 +10,7 @@ class ProjectsForm extends React.Component {
     this.state = {
       title: "",
       description: "",
+      redirect: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -34,12 +36,19 @@ class ProjectsForm extends React.Component {
           description: this.state.description,
         })
       })
-      .then( (result) => console.log(`Le projet ${this.state.title} a été créé`))
+      .then( (result) => {
+        console.log(`Le projet ${this.state.title} a été créé`)
+        this.setState({redirect: true})
+      })
       .catch( (err) => console.log(`Le projet ${this.state.title} n'a pas été créé ${err}`))
     }
   }
 
   render() {
+
+    const { from } = this.props.location.state || '/'
+    const { redirect } = this.state
+
     return (
       <div className="container-form">
         <form onSubmit={this.handleSubmit}>
@@ -61,9 +70,12 @@ class ProjectsForm extends React.Component {
               />
 
           <div className="container-btn">
-            <Button type="submit" value="Valider" color="white"/>
+            <Button type="submit" value="Valider" />
           </div>
         </form>
+        {redirect && (
+          <Redirect from={from} to='/projects' />
+        )}
       </div>
     )
   }

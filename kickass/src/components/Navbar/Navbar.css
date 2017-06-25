@@ -14,7 +14,7 @@ nav {
 }
 
 .nav-list > li {
-  padding-right: 30px;
+  padding: 15px;
   font-size: 1.3em;
   padding-top: 30px;
   transition: 0.4s;
@@ -22,6 +22,10 @@ nav {
 
 .nav-list li a {
   color: white;
+}
+
+li > a.active {
+  color: black;
 }
 
 #brand {

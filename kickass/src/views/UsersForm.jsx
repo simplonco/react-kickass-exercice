@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect, Link } from 'react-router-dom';
 import API from '../variables.js';
 import '../CSS/Form.css';
 import Input from '../components/Forms/Input.jsx';
@@ -11,6 +12,7 @@ class UsersForm extends Component {
        name: '',
        age: '',
        type: '',
+       redirect: false
      };
      this.handleFormSubmit = this.handleFormSubmit.bind(this);
    }
@@ -36,13 +38,18 @@ class UsersForm extends Component {
           type: this.state.type
         })
       })
-      .then( (result) => console.log(`L'utilisateur ${this.state.name} a été créé`))
+      .then( (result) => {
+        console.log(`L'utilisateur ${this.state.name} a été créé`)
+        this.setState({redirect: true});
+      })
       .catch( (err) => console.log(`L'utilisateur n' a pas été créé ${err}`));
     }
   }
 
   render() {
     let { name, age, type } = this.state;
+    const { from } = this.props.location.state || '/'
+    const { redirect } = this.state
 
     return (
       <div className="container-form">
@@ -75,10 +82,12 @@ class UsersForm extends Component {
               <div className="container-btn">
                 <Button type="submit"
                   value="Valider"
-                  backgroundColor="#03A9F4"
-                  color="white" />
+                  />
               </div>
         </form>
+        {redirect && (
+          <Redirect from={from}  to='/users' />
+        )}
       </div>
     )
   }

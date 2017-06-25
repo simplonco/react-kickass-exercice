@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 class Navbar extends React.Component {
@@ -29,13 +29,13 @@ class Navbar extends React.Component {
     return (
       <nav>
         <ul className="nav-list">
-          <li id="brand"><Link to="/">KickAssStarter</Link></li>
-          <li className={toggleVisibility}><Link to="/users">Utilisateurs</Link></li>
-          <li className={toggleVisibility}><Link to="/projects">Projets</Link></li>
+          <li id="brand"><NavLink exact to="/">KickAssStarter</NavLink></li>
+          <li className={toggleVisibility}><NavLink exact to="/users">Utilisateurs</NavLink></li>
+          <li className={toggleVisibility}><NavLink exact to="/projects">Projets</NavLink></li>
           <li id="dropdown-btn" className={toggleVisibility} onClick={this.handleDropdownButon}>Ajouts
             <ul className={dropdownBtn}>
-              <Link to='/usersForm'><li className="none">ajouter un utilisateur</li></Link>
-              <Link to='/projectsForm'><li className="none">ajouter un projet</li></Link>
+              <NavLink to='/usersForm'><li className="none">ajouter un utilisateur</li></NavLink>
+              <NavLink to='/projectsForm'><li className="none">ajouter un projet</li></NavLink>
             </ul>
           </li>
           <div id="toggle-nav" onClick={this.ToggleNavVisibility}>

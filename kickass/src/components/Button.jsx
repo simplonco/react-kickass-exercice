@@ -8,8 +8,13 @@ const Button = (props) => {
   }
 
   return (
-    <button style={buttonStyle} type={props.type}>{props.value}</button>
+    <button style={buttonStyle} type={props.type} onClick={props.onClick}>{props.value}</button>
   )
+}
+
+Button.defaultProps = {
+  backgroundColor: "#03A9F4",
+  color: "white"
 }
 
 export default Button;
