@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 import store from './store'; // Redux Store
 
@@ -21,8 +22,8 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Home} />
             <Route path="/newuser" component={NewUser} />
-            <Route path="/user/:userId" component={User} />
             <Route path="/newproject" component={CreateProject} />
+            <Route path="/user/:userId" component={User} />
             <Route path="/project/:projectId" component={Project} />
           </div>
         </Router>

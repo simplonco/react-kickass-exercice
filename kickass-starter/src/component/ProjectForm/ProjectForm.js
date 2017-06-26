@@ -49,7 +49,7 @@ class ProjectForm extends Component {
 			return null;
 		}
 		const replace = creator.toLowerCase();
-		const re = new RegExp(replace, "g");
+		const re = new RegExp("^" + replace, "g");
 
 		let searchUser = users.filter((user) => {
 			return re.test(user.name.toLowerCase());
@@ -80,27 +80,28 @@ class ProjectForm extends Component {
 	}
 
 
-	handleCreateFormSubmit() {
-		fetch(`${API}/project`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'Origin': 'Access-Control-Allow-Origin'
-			},
-			body: JSON.stringify({
-				title: this.state.title,
-				description: this.state.description,
-				creator: this.state.creator
-			})
-		})
-			.then(project => {
-				console.log('New project created')
-				this.setState({ redirectToHome: true });
-			})
-			.catch(err => {
-				console.log('error ', err);
-			});
-	}
+	// handleCreateFormSubmit() {
+	// 	fetch(`${API}/project`, {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			'Origin': '*',
+	// 			'Access-Control-Allow-Origin': '*'
+	// 		},
+	// 		body: JSON.stringify({
+	// 			title: this.state.title,
+	// 			description: this.state.description,
+	// 			creator: this.state.creator
+	// 		})
+	// 	})
+	// 		.then(project => {
+	// 			console.log('New project created')
+	// 			this.setState({ redirectToHome: true });
+	// 		})
+	// 		.catch(err => {
+	// 			console.log('error ', err);
+	// 		});
+	// }
 
 	handleUpdateFormSubmit() {
 		fetch(`${API}/project/${this.props.projectId}`, {
@@ -153,7 +154,7 @@ class ProjectForm extends Component {
 						</div>
 						<div>
 							<label htmlFor="description">Description</label>
-							<textarea type="text"
+							<input type="text"
 								name="description"
 								value={description}
 								onChange={this.handleFormChange} />
@@ -164,7 +165,6 @@ class ProjectForm extends Component {
 								name="creator"
 								value={creator}
 								onChange={this.handleFormChange} />
-
 							{this.handleUserSearch()}
 						</div>
 

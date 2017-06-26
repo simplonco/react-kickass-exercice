@@ -8,14 +8,16 @@ function fetchUsers(WrappedComponent) {
 	return class extends Component {
 		componentDidMount() {
 			// GET users infos
-			fetch(`${API}/users`, { method: 'GET' })
+			fetch(`${API}/users`, {
+				method: 'GET'
+			})
 				.then(data => data.json())
 				.then(result => this.props.fetchUsersComplete(result))
 				.catch(err => this.props.fetchError(err));
 
 
 			// GET projects infos
-			fetch(`${API}/projects`, { method: 'GET' })
+			fetch(`${API}/projects`, { method: 'GET', headers: { "Origin": "*" } })
 				.then(data => data.json())
 				.then(result => this.props.fetchProjectsComplete(result))
 				.catch(err => console.log('error', err));

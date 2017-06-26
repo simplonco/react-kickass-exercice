@@ -2,17 +2,24 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { API } from './../../variables';
 import './User.css';
-import UserForm from './../../component/UserForm/UserForm';
+import Form from './../../component/Form/Form';
 
 export default class User extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			user: null,
 			userProjects: [],
 			update: false,
-			redirectToHome: false
+			redirectToHome: false,
+			name: "",
+			age: "",
+			type: "",
 		}
+
+		this.handleUpdateFormSubmit = this.handleUpdateFormSubmit.bind(this);
+		this.handleFormChange = this.handleFormChange.bind(this);
 	}
 
 	componentDidMount() {
@@ -34,17 +41,6 @@ export default class User extends Component {
 			})
 	}
 
-	handleUpdateUserBtnClick() {
-		this.setState({
-			update: true,
-		});
-	}
-
-	handleFormChange = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		});
-	}
 
 	handleDeleteUser() {
 		fetch(`${API}/user/${this.state.user._id}`, {
@@ -57,7 +53,22 @@ export default class User extends Component {
 			.catch(err => console.log('error ', err));
 	}
 
-	handleUpdateUser() {
+	handleUpdateUserBtnClick() {
+		this.setState({
+			update: true,
+			name: this.state.user.name,
+			age: this.state.user.age,
+			type: this.state.user.type,
+		});
+	}
+
+	handleFormChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	}
+
+	handleUpdateFormSubmit() {
 		fetch(`${API}/user/${this.state.user._id}`, {
 			method: 'PUT',
 			headers: {
@@ -124,15 +135,35 @@ export default class User extends Component {
 	}
 
 	renderUserUpdate() {
-		const { user } = this.state;
+		const { user, name, age, type } = this.state;
+		const formInputs = [
+			{
+				label: "Name",
+				name: "name",
+				type: "text",
+				value: name,
+			},
+			{
+				label: "Age",
+				name: "age",
+				type: "text",
+				value: age,
+			},
+			{
+				label: "Type",
+				name: "type",
+				type: "text",
+				value: type,
+			},
+		];
+
 		return (
-			<div>
-				<UserForm action="update"
-					name={user.name}
-					age={user.age}
-					type={user.type}
-					userId={user._id} />
-			</div>
+			<Form
+				title="Update user's informations :"
+				buttonText="Update user"
+				handleFormChange={this.handleFormChange}
+				handleFormSubmit={this.handleUpdateFormSubmit}
+				inputs={formInputs} />
 		)
 	}
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { API } from './../../variables';
-import ProjectForm from './../../component/ProjectForm/ProjectForm';
+import Form from './../../component/Form/Form';
 import './Project.css';
 
 export default class Project extends Component {
@@ -9,8 +9,14 @@ export default class Project extends Component {
 		this.state = {
 			project: null,
 			user: null,
-			update: false
+			title: "",
+			description: "",
+			creator: "",
+			update: false,
 		}
+
+		this.handleFormChange = this.handleFormChange.bind(this);
+		this.handleUpdateFormSubmit = this.handleUpdateFormSubmit.bind(this);
 	}
 
 	componentDidMount() {
@@ -30,7 +36,6 @@ export default class Project extends Component {
 					.catch(err => console.log('error', err));
 			})
 			.catch(err => console.log('error ', err));
-
 	}
 
 	handleUpdateProjectBtnClick() {
@@ -57,9 +62,33 @@ export default class Project extends Component {
 				this.setState({ redirectToHome: true });
 			})
 			.catch(err => console.log('error ', err));
-
-
 	}
+
+	handleUpdateFormSubmit() {
+		fetch(`${API}/project/${this.props.projectId}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				title: this.state.title,
+				description: this.state.description,
+				creator: this.state.creator
+			})
+		})
+			.then(res => {
+				return res.json();
+			})
+			.then(user => {
+				console.log('Project updated');
+				window.location.reload();
+			})
+			.catch(err => {
+				console.log('error ', err);
+			});
+	}
+
+
 
 	renderProjectInfo() {
 		const { project, user } = this.state;
@@ -84,16 +113,40 @@ export default class Project extends Component {
 	}
 
 	render() {
-		const { update, project } = this.state;
+		const { update, project, title, description, creator } = this.state;
+
+		const formInputs = [
+			{
+				label: "Title",
+				name: "title",
+				type: "text",
+				value: title,
+			},
+			{
+				label: "Description",
+				name: "description",
+				type: "text",
+				value: description,
+				textarea: true,
+			},
+			{
+				label: "Creator",
+				name: "creator",
+				type: "text",
+				value: creator,
+			}
+		]
 
 		return (
 			(!update)
 				? this.renderProjectInfo()
-				: <ProjectForm action="update"
-					title={project.title}
-					description={project.description}
-					creator={project._creator}
-					projectId={project._id} />
+				: <Form
+					title="Update project's informations :"
+					buttonText="Update project"
+					handleFormChange={this.handleFormChange}
+					handleFormSubmit={this.handleUpdateFormSubmit}
+					inputs={formInputs}
+				/>
 		)
 	}
 };

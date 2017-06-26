@@ -19,7 +19,7 @@ const List = (props) => {
 
 	function renderList() {
 		return (
-			props.datas === null
+			props.datas === []
 				? <p>
 					<i className="fa fa-spin fa-spinner fa-2x"
 						aria-hidden="true"
