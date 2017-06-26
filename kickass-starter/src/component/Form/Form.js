@@ -10,23 +10,24 @@ const Form = (props) => {
 			inputs.map((inputItem, index) => {
 				if (inputItem.textarea) {
 					return (
-						<div key={index}>
-							<label htmlFor={inputItem.name}>{inputItem.label}</label>
+						<fieldset key={index}>
 							<textarea
 								name={inputItem.name}
 								value={inputItem.value}
 								onChange={(e) => props.handleFormChange(e)} />
-						</div>
+							<label htmlFor={inputItem.name}>{inputItem.label}</label>
+						</fieldset>
 					)
 				}
 				return (
-					<div key={index}>
-						<label htmlFor={inputItem.name}>{inputItem.label}</label>
+					<fieldset key={index}>
 						<input type={inputItem.type}
 							name={inputItem.name}
 							value={inputItem.value}
 							onChange={(e) => props.handleFormChange(e)} />
-					</div>
+						<hr />
+						<label htmlFor={inputItem.name}>{inputItem.label}</label>
+					</fieldset>
 				)
 			})
 		);

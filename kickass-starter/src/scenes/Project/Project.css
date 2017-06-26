@@ -19,10 +19,64 @@
 	background-color: #ECECEC;
 }
 
-.user-info>div {
-	width: 100%;
+.user-info {
+	box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+	border-radius: 2px;
+}
+
+.user-info>fieldset {
 	margin: 10px auto;
 	display: flex;
 	justify-content: space-between;
 	position: relative;
+	padding: 0;
+	padding-bottom: 0.5em;
+	border: none;
+}
+
+.user-info>fieldset>input, .user-info>fieldset>textarea {
+	color: rgb(50,50,50);
+	width: 100%;
+	border: none;
+	margin-bottom: 0;
+	border-bottom: 1px solid rgb(220, 220,220);
+	padding: 1.2em 1em 0.5em 1em;
+	box-sizing: border-box;
+	font-size: 1rem;
+}
+
+.user-info input:focus, .user-info textarea:focus {
+	outline: none;
+}
+
+.user-info hr {
+	margin-top: 0;
+	transform: scaleX(0);
+	background-color: #1e99fb;
+	color: #1e99fb;
+	border-bottom-color: #1e99fb;
+	transition: 0.3s ease;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.user-info input:focus ~ hr,
+.user-info textarea:focus ~ hr {
+	transform: scaleX(1);
+}
+
+.user-info>fieldset>label {
+	position: absolute;
+	top: 0.1em;
+	left: 0.3em;
+	/*transition: 0.3s;*/
+	font-size: 0.7rem;
+	color: rgb(150,150,150);
+}
+
+.user-info input:focus ~ label,
+.user-info textarea:focus ~ label {
+	color: #1e99fb;
 }
