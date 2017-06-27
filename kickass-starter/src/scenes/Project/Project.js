@@ -105,8 +105,12 @@ export default class Project extends Component {
 							{(user !== null) ? user.name : "Unknown"}
 						</span></p>
 
-						<button onClick={() => this.handleUpdateProjectBtnClick()}>Update Project's informations</button>
-						<button onClick={() => this.handleDeleteProject()}>Delete Project</button>
+						<button className="gradient-btn color-1-gradient"
+							onClick={() => this.handleUpdateProjectBtnClick()}
+						>Update Project's informations</button>
+						<button className="gradient-btn color-2-gradient"
+							onClick={() => this.handleDeleteProject()}
+						>Delete Project</button>
 					</div>
 				</div>
 		)

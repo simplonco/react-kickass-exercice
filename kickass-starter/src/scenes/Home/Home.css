@@ -12,9 +12,12 @@ ul {
 }
 
 .home-list {
-	margin: 5px;
+	transition: 0.5s;
+	margin: 3em;
 	border: 3px solid #545454;
 	border-radius: 2px;
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+	overflow: hidden;
 }
 
 .home-list>p {
@@ -30,7 +33,7 @@ ul {
 }
 
 .home-list a {
-	color: #1e99fb;
+	color: #1eaefb;
 	flex: 1;
 }
 
@@ -41,10 +44,6 @@ ul {
 .home-list>li:first-of-type {
 	background-color: #545454;
 	color: #fff;
-	padding: 10px;
+	padding: 15px;
+	margin: 0;
 }
-
-
-/*.flex-row {
-	display: flex;
-}*/

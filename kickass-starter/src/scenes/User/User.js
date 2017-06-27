@@ -127,8 +127,13 @@ export default class User extends Component {
 							}
 						</ul>
 
-						<button onClick={() => this.handleUpdateUserBtnClick()}>Update User's informations</button>
-						<button onClick={() => this.handleDeleteUser()}>Delete User</button>
+						<button className="gradient-btn color-1-gradient"
+							onClick={() => this.handleUpdateUserBtnClick()}
+						>Update User's informations</button>
+						<button className="gradient-btn color-2-gradient"
+							onClick={() => this.handleDeleteUser()}
+						>
+							<span>Delete User</span></button>
 					</div>
 				</div>
 		)

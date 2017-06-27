@@ -15,6 +15,7 @@ const Form = (props) => {
 								name={inputItem.name}
 								value={inputItem.value}
 								onChange={(e) => props.handleFormChange(e)} />
+							<hr />
 							<label htmlFor={inputItem.name}>{inputItem.label}</label>
 						</fieldset>
 					)
@@ -41,6 +42,7 @@ const Form = (props) => {
 				<h3>{props.title}</h3>
 				{renderInputs()}
 				<button
+					className="gradient-btn color-1-gradient"
 					onClick={() => props.handleFormSubmit()}
 				>
 					{props.buttonText}
