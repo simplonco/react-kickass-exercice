@@ -9,10 +9,9 @@ export default class Project extends Component {
 		super(props);
 		this.state = {
 			project: null,
-			user: null,
 			title: "",
 			description: "",
-			creator: undefined,
+			creator: "",
 			update: false,
 		}
 
@@ -23,28 +22,17 @@ export default class Project extends Component {
 	componentDidMount() {
 		fetch(`${API}/project/${this.props.match.params.projectId}`)
 			.then(res => res.json())
-			.then(project => {
-				fetch(`${API}/user/${project._creator}`)
-					.then(data => data.json())
-					.then(user => {
-						this.setState({
-							project: project
-						});
-						this.setState({
-							user: user
-						});
-					})
-					.catch(err => console.log('error', err));
-			})
+			.then(project => this.setState({ project }))
 			.catch(err => console.log('error ', err));
 	}
 
 	handleUpdateProjectBtnClick() {
+		const { project } = this.state;
 		this.setState({
 			update: true,
-			title: this.state.project.title,
-			description: this.state.project.description,
-			creator: this.state.project.creator || "Unknown"
+			title: project.title,
+			description: project.description,
+			creator: project._creator,
 		});
 	}
 
@@ -55,7 +43,7 @@ export default class Project extends Component {
 	}
 
 	handleDeleteProject() {
-		fetch(`${API}/project/${this.state.project._id}`, {
+		fetch(`${API}/project/${this.state.project.project_id}`, {
 			method: 'DELETE'
 		})
 			.then(data => {
@@ -92,18 +80,18 @@ export default class Project extends Component {
 
 
 	renderProjectInfo() {
-		const { project, user } = this.state;
+		const { project } = this.state;
 
 		return (
-			(project === null || user === null)
+			(project === null)
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
 				: <div className="container-center">
 					<div className="sub-container user-info">
 						<h3>Project's informations :</h3>
 						<p>Title : <span className="blue-text">{project.title}</span></p>
 						<p>Description : <span className="blue-text">{project.description}</span></p>
-						<p>Creator : <Link to={`/user/${user._id}`} className="blue-text">
-							{user.name}
+						<p>Creator : <Link to={`/user/${project.user_id}`} className="blue-text">
+							{project.name}
 						</Link></p>
 
 						<button className="gradient-btn color-1-gradient"

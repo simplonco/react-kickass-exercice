@@ -7,6 +7,11 @@ ul {
 	padding: 0;
 }
 
+.italic-text {
+	font-style: italic;
+	font-weight: 300;
+}
+
 .text-center {
 	text-align: center;
 }

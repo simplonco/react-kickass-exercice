@@ -5,6 +5,7 @@
 	border-radius: 2px;
 	box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 	overflow: hidden;
+	width: 100%;
 }
 
 .List>p {

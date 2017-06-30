@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { API } from './../../variables';
 import './User.css';
 import Form from './../../component/Form/Form';
@@ -113,28 +113,17 @@ export default class User extends Component {
 						<p>Age : <span className="blue-text">{user.age} years old</span></p>
 						<p>Type : <span className="blue-text">{user.type}</span></p>
 
-						<ul>
-							<li>Projects :</li>
-							{
-								(userProjects.length > 0)
-									? < List
-										datas={userProjects}
-										title="Projects"
-										elementsType="project"
-										propertyCalling="title"
+						{
+							(userProjects.length > 0)
+								? < List
+									datas={userProjects}
+									title={`${user.name}'s projects :`}
+									elementsType="project"
+									propertyCalling="title"
 
-									/>
-
-									//? userProjects.map((project, index) => (
-									//	<li key={index}>
-									//		<Link to={`/project/${project._id}`}>
-									//			{index + 1} / {project.title}
-									//		</Link>
-									//	</li>
-									//))
-									: <p>No project for the moment</p>
-							}
-						</ul>
+								/>
+								: <p className="italic-text">No project for the moment</p>
+						}
 
 						<button className="gradient-btn color-1-gradient"
 							onClick={() => this.handleUpdateUserBtnClick()}
@@ -185,9 +174,13 @@ export default class User extends Component {
 		const { update } = this.state;
 
 		return (
-			(!update)
-				? this.renderUserInfo()
-				: this.renderUserUpdate()
+			<div className="User">
+				{
+					(!update)
+						? this.renderUserInfo()
+						: this.renderUserUpdate()
+				}
+			</div>
 		)
 	}
 };

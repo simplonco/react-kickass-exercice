@@ -64,9 +64,15 @@ export default class List extends Component {
 							<Link to={`/${this.props.elementsType}/${data._id}`}>
 								{eval('data.' + this.props.propertyCalling)}
 							</Link>
-							<button className="gradient-btn color-1-gradient"
-								onClick={(e) => this.handleDeleteItem(e, data._id, index)}>
-								<span>Delete</span></button>
+							{
+								(this.props.deleteItem)
+									? <button className="gradient-btn color-1-gradient"
+										onClick={(e) => this.handleDeleteItem(e, data._id, index)}>
+										<span>Delete</span>
+									</button>
+									: null
+							}
+
 						</li>
 					)
 				})
@@ -137,7 +143,7 @@ export default class List extends Component {
 
 
 List.propTypes = {
-	datas: PropTypes.object.isRequired,
+	datas: PropTypes.array.isRequired,
 	title: PropTypes.string.isRequired,
 	elementsType: PropTypes.string.isRequired,
 	propertyCalling: PropTypes.string.isRequired,

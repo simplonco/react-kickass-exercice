@@ -80,6 +80,13 @@
 	margin-top: 1em;
 }
 
+.user-info>p {
+	border-bottom: 1px solid rgb(220, 220,220);
+	display: flex;
+	justify-content: space-between;
+	padding: 0.2em 0.5em;
+}
+
 .user-info>fieldset {
 	width: 100%;
 	margin: 10px auto;
