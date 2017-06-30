@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { API } from './../../variables';
 import './User.css';
 import Form from './../../component/Form/Form';
+import List from './../../component/List/List';
 
 export default class User extends Component {
 	constructor(props) {
@@ -14,7 +15,7 @@ export default class User extends Component {
 			update: false,
 			redirectToHome: false,
 			name: "",
-			age: "",
+			age: undefined,
 			type: "",
 		}
 
@@ -116,14 +117,22 @@ export default class User extends Component {
 							<li>Projects :</li>
 							{
 								(userProjects.length > 0)
-									? userProjects.map((project, index) => (
-										<li key={index}>
-											<Link to={`/project/${project._id}`}>
-												{index + 1} / {project.title}
-											</Link>
-										</li>
-									))
-									: null
+									? < List
+										datas={userProjects}
+										title="Projects"
+										elementsType="project"
+										propertyCalling="title"
+
+									/>
+
+									//? userProjects.map((project, index) => (
+									//	<li key={index}>
+									//		<Link to={`/project/${project._id}`}>
+									//			{index + 1} / {project.title}
+									//		</Link>
+									//	</li>
+									//))
+									: <p>No project for the moment</p>
 							}
 						</ul>
 
@@ -140,7 +149,7 @@ export default class User extends Component {
 	}
 
 	renderUserUpdate() {
-		const { user, name, age, type } = this.state;
+		const { name, age, type } = this.state;
 		const formInputs = [
 			{
 				label: "Name",

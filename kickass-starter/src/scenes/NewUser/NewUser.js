@@ -23,7 +23,9 @@ class CreateUser extends Component {
 		});
 	};
 
-	handleCreateFormSubmit() {
+	handleCreateFormSubmit(e) {
+		e.preventDefault();
+		console.log('post user');
 		fetch(`${API}/user`, {
 			method: 'POST',
 			headers: {

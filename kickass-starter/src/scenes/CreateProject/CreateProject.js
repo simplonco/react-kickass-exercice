@@ -9,7 +9,7 @@ class CreateProject extends Component {
 		this.state = {
 			title: "",
 			description: "",
-			creator: "",
+			creator: undefined,
 			redirectToHome: false
 		};
 
@@ -25,6 +25,8 @@ class CreateProject extends Component {
 
 
 	handleCreateFormSubmit() {
+		const { title, description, creator } = this.state;
+
 		fetch(`${API}/project`, {
 			method: 'POST',
 			headers: {
@@ -32,9 +34,9 @@ class CreateProject extends Component {
 				'Origin': '*',
 			},
 			body: JSON.stringify({
-				title: this.state.title,
-				description: this.state.description,
-				creator: this.state.creator
+				title: title,
+				description: description,
+				_creator: creator
 			})
 		})
 			.then(project => {

@@ -40,14 +40,15 @@
 	background: -webkit-linear-gradient(left, #3acfd5, #1e99fb);
 	-webkit-background-clip: text;
 	background-clip: text;
-	-webkit-text-fill-color: transparent;
+	/*-webkit-text-fill-color: transparent;*/
 	position: relative;
 	overflow: hidden;
-	/*z-index: 10;*/
+	z-index: 10;
+	/*transform: skewX(-15deg);*/
 }
 
 
-.gradient-btn::before {
+.gradient-btn::after {
 	content:"";
 	background: -webkit-linear-gradient(left, #3acfd5, #1e99fb);
 	background: -moz-linear-gradient(left, #3acfd5, #1e99fb);
@@ -58,19 +59,19 @@
 	left: 0;
 	height: 100%;
 	width: 0;
-	/*z-index: -100;*/
+	z-index: -100;
 	transition: 0.3s;
 }
 
 .gradient-btn:hover {
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: #fff;
 	background-clip: text;
 	background: #fff;
-	/*color: #fff;*/
+	color: #fff;
 }
 
-.gradient-btn:hover::before {
+.gradient-btn:hover::after {
 	width: 100%;
 }
 
@@ -126,7 +127,6 @@
 	position: absolute;
 	top: 0.1em;
 	left: 0.3em;
-	/*transition: 0.3s;*/
 	font-size: 0.7rem;
 	color: rgb(150,150,150);
 }

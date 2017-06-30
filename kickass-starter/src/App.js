@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
 
 import store from './store'; // Redux Store
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { API } from './../../variables';
+import { Link } from 'react-router-dom';
 import Form from './../../component/Form/Form';
 import './Project.css';
 
@@ -11,7 +12,7 @@ export default class Project extends Component {
 			user: null,
 			title: "",
 			description: "",
-			creator: "",
+			creator: undefined,
 			update: false,
 		}
 
@@ -94,16 +95,16 @@ export default class Project extends Component {
 		const { project, user } = this.state;
 
 		return (
-			(project === null)
+			(project === null || user === null)
 				? <p className="text-center"><i className="fa fa-spin fa-spinner fa-2x" aria-hidden="true"></i></p>
 				: <div className="container-center">
 					<div className="sub-container user-info">
 						<h3>Project's informations :</h3>
 						<p>Title : <span className="blue-text">{project.title}</span></p>
 						<p>Description : <span className="blue-text">{project.description}</span></p>
-						<p>Creator : <span className="blue-text">
-							{(user !== null) ? user.name : "Unknown"}
-						</span></p>
+						<p>Creator : <Link to={`/user/${user._id}`} className="blue-text">
+							{user.name}
+						</Link></p>
 
 						<button className="gradient-btn color-1-gradient"
 							onClick={() => this.handleUpdateProjectBtnClick()}
@@ -117,7 +118,7 @@ export default class Project extends Component {
 	}
 
 	render() {
-		const { update, project, title, description, creator } = this.state;
+		const { update, title, description, creator } = this.state;
 
 		const formInputs = [
 			{

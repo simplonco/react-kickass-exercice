@@ -1,0 +1,92 @@
+.List {
+	transition: 0.5s;
+	margin: 1em auto;
+	border: 3px solid #545454;
+	border-radius: 2px;
+	box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+	overflow: hidden;
+}
+
+.List>p {
+	text-align: center;
+}
+.List .users-container li {
+	display: flex;
+	align-items: center;
+	background-color: #ECECEC;
+	padding: 5px 10px;
+	margin: 5px;
+	transition: 0.3s;
+}
+
+.List .search-input {
+	border-radius: 15px;
+	border: 2px solid #EAEAEA;
+	padding: 5px 10px;
+	transition: 0.3s ease;
+	flex:0.5;
+}
+
+.List .search-input::after {
+	content:"";
+}
+
+.List .search-input:focus {
+	flex: 0.5;
+	outline: none;
+	border: 2px solid #1eaefb;
+}
+
+.List a {
+	color: #1eaefb;
+	flex: 1;
+
+}
+
+.List .users-container li:hover {
+	background-color: #CDCDCD;
+}
+
+.List>li:first-of-type {
+	background-color: #545454;
+	color: #fff;
+	padding: 15px;
+	margin: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.List>li:first-of-type i {
+	font-size: 1.2rem;
+}
+
+
+/* Animation */
+
+.spreadList-enter {
+  max-height: 0px;
+  -webkit-transition: max-height 1s ease;
+  transition: max-height 1s ease;
+  /*overflow: hidden;*/
+}
+
+.spreadList-enter.spreadList-enter-active {
+  height: auto;
+  max-height: 600px;
+  -webkit-transition: max-height 1s ease;
+  transition: max-height 1s ease;
+}
+
+.spreadList-leave {
+  max-height: 600px;
+  -webkit-transition: max-height 1s ease;
+  transition: max-height 1s ease;
+}
+
+.spreadList-leave.spreadList-leave-active {
+  -webkit-transition: max-height 1s ease;
+  transition: max-height 1s ease;
+  /*overflow: hidden;*/
+  max-height: 0px;
+}

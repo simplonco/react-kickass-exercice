@@ -19,8 +19,6 @@
 	transition: 0.3s;
 }
 
-
-
 .gradient-text {
 	background: -webkit-linear-gradient(left, #3acfd5, #1e99fb);
 	-webkit-background-clip: text;
@@ -31,14 +29,14 @@
 #header .navbar {
 	display: flex;
 	justify-content: space-between;
-	flex: 0.3;
+	min-width: 20rem;
 }
 
 #header .navbar li {
 	position: relative;
 }
 
-#header .navbar li>hr {
+#header .navbar li hr {
 	position: absolute;
 	top: 1em;
 	left: 0;
@@ -54,11 +52,11 @@
 	transition: 0.3s ease-out;
 }
 
-#header .navbar li:hover a {
+#header .navbar li:hover a, #header .navbar a.active {
 	color: #fff;
 }
 
-#header .navbar li:hover hr {
+#header .navbar a:hover hr, #header .navbar a.active hr {
 	transform: scaleX(1);
 }
 

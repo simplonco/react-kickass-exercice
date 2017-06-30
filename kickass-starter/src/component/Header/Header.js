@@ -1,27 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './header.css';
 
 const Header = () => (
 	<div id="header">
-		<Link to="/">
+		<NavLink to="/">
 			<h1 className="gradient-text">
 				<span className="blue-text">Kick</span>ass <span className="blue-text">S</span>tarter
 		</h1>
-		</Link>
+		</NavLink>
 
 		<ul className="navbar">
 			<li>
-				<Link to='/'>Home</Link>
-				<hr />
+				<NavLink exact activeClassName="active" to='/' >
+					<span>Home</span>
+					<hr />
+				</NavLink>
 			</li>
 			<li>
-				<Link to='/newuser'>Create User</Link>
-				<hr />
+				<NavLink activeClassName={"active"} to='/newuser'>
+					<span>Create User</span>
+					<hr />
+				</NavLink>
 			</li>
 			<li>
-				<Link to='/newproject'>Create Project</Link>
-				<hr />
+				<NavLink activeClassName="active" to='/newproject'>
+					<span>Create Project</span>
+					<hr />
+				</NavLink>
 			</li>
 		</ul>
 	</div>

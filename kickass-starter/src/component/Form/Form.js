@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Form = (props) => {
@@ -40,10 +40,12 @@ const Form = (props) => {
 		<div className="container-center">
 			<div className="sub-container user-info">
 				<h3>{props.title}</h3>
+
+
 				{renderInputs()}
 				<button
 					className="gradient-btn color-1-gradient"
-					onClick={() => props.handleFormSubmit()}
+					onClick={(e) => props.handleFormSubmit(e)}
 				>
 					{props.buttonText}
 				</button>

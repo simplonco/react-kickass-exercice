@@ -11,39 +11,18 @@ ul {
 	text-align: center;
 }
 
-.home-list {
-	transition: 0.5s;
-	margin: 3em;
-	border: 3px solid #545454;
-	border-radius: 2px;
-	box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-	overflow: hidden;
-}
-
-.home-list>p {
-	text-align: center;
-}
-.home-list li {
+.flex-row {
 	display: flex;
-	align-items: center;
-	background-color: #ECECEC;
-	padding: 5px 10px;
-	margin: 5px;
-	transition: 0.3s;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	box-sizing: border-box;
 }
 
-.home-list a {
-	color: #1eaefb;
-	flex: 1;
+.Home h3 {
+	font-size: 1.5rem;
 }
 
-.home-list li:hover {
-	background-color: #CDCDCD;
-}
-
-.home-list>li:first-of-type {
-	background-color: #545454;
-	color: #fff;
-	padding: 15px;
-	margin: 0;
+.Home .List {
+	width: 45%;
 }
