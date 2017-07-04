@@ -2,12 +2,14 @@ import React from 'react'
 import '../CSS/Profile.css'
 import FormUser from '../components/Forms/FormUser.jsx'
 import Button from '../components/Button.jsx'
+import { Link } from 'react-router-dom'
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       user: '',
+      likes: '',
       id: this.props.match.params.id,
       showUpdateForm: false,
       // redirect: false
@@ -15,7 +17,7 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount = () => {
-      fetch(`/api/users/${this.state.id}`, { method: 'GET',
+      fetch(`/api/users/${this.state.id}/projects`, { method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Accept' : 'application/json',
@@ -37,6 +39,14 @@ class UserProfile extends React.Component {
         <div>
           <p>Nom: {this.state.user[0].name}</p>
           <p>Email: {this.state.user[0].email}</p>
+          <ul>Projets: {this.state.user.map( (projet) => {
+              return (
+                <Link to={`/projects/${projet.id_project}`}>
+                  <li>{projet.title}</li>
+                </Link>
+              )}
+            )}
+          </ul>
         </div>
         )
       }
