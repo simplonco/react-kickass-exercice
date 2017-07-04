@@ -54,7 +54,6 @@ class UserProfile extends React.Component {
 
   render() {
     let classShowUpdateForm = this.state.showUpdateForm === true ? 'show-form' : ''
-    let { name, email, id_user } = this.state.user
 
     // const { from } = this.props.location.state || '/'
     // const { redirect, id } = this.state

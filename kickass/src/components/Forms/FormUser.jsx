@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import API from '../../variables.js';
 import '../../CSS/Form.css';
 import Input from './Input.jsx';
 import Button from '../Button.jsx';

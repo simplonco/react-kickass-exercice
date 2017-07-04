@@ -35,7 +35,7 @@ app.use(morgan(':method : url :status :res[content-length] - :response-time ms')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-//for production 
+//for production
 app.use(express.static(`${__dirname}/build`));
 
 const apiRoutes = express.Router();

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import API from './../variables.js'
 import '../CSS/List.css'
 
 class Users extends React.Component {
