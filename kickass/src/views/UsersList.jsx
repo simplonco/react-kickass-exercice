@@ -1,33 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import API from './../variables.js';
-import '../CSS/List.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import API from './../variables.js'
+import '../CSS/List.css'
 
 class Users extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       users: []
     }
   }
 
-  componentWillMount() {
-
-  }
-
   componentDidMount() {
-    fetch(`${API}/users`)
+    fetch(`/api/users`, { method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept' : 'application/json',
+      }
+    })
     .then( (res) => res.json())
     .then( json => {
-      this.setState({users: json});
-    });
+      this.setState({users: json})
+    })
   }
 
   renderUsers = () => {
     return this.state.users.map( (user, index) => {
-
         return (
-          <Link to={`/users/${user._id}`}>
+          <Link to={`/users/${user.id_user}`}>
             <li key={index} className="list-element" >
               <h3>{user.name}</h3>
               <div className="container-img">
@@ -35,8 +35,7 @@ class Users extends React.Component {
               </div>
             </li>
           </Link>
-        );
-
+        )
     })
   }
 
@@ -50,4 +49,4 @@ class Users extends React.Component {
   }
 }
 
-export default Users;
+export default Users

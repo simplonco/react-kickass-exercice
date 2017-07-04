@@ -1,18 +1,17 @@
-import React from 'react';
-import API from './../variables.js';
-import '../CSS/Project.css';
+import React from 'react'
+import '../CSS/Project.css'
 
 class ProjectPage extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      project: "",
+      project: '',
       id: this.props.match.params.id
     }
   }
 
   componentDidMount() {
-      fetch(`${API}/project/${this.state.id}`)
+      fetch(`/api/projects/${this.state.id}`)
       .then( res => res.json())
       .then( (json) => {
         this.setState({project: json})

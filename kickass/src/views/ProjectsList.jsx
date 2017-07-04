@@ -12,7 +12,7 @@ class Projects extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`${API}/projects`)
+    fetch(`/api/projects`)
     .then( res => res.json())
     .then( json => {
       this.setState({projects: json});
@@ -22,7 +22,7 @@ class Projects extends React.Component {
   renderProjects = () => {
     return this.state.projects.map( (project) => {
       return (
-        <Link to={`projects/${project._id}`}>
+        <Link to={`projects/${project.id_project}`}>
           <li className="list-element">
               <h3>{project.title}</h3>
               <div className="container-img">

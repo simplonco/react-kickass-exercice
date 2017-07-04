@@ -10,8 +10,8 @@ class FormUser extends Component {
      super(props);
      this.state= {
        name: '',
-       age: '',
-       type: '',
+       email: '',
+       password: '',
        redirect: false,
      };
      this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -31,16 +31,16 @@ class FormUser extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
     if (window.confirm(`Êtes-vous sur de vouloir créer l'utilisateur ${this.state.name} ?`)) {
-      fetch(`${API}/${this.props.submitParameters}`, {
+      fetch(`/api/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept' : 'application/json',
         },
         body: JSON.stringify({
-          age: this.state.age,
           name: this.state.name,
-          type: this.state.type
+          email: this.state.email,
+          password: this.state.password
         })
       })
       .then( (result) => {
@@ -54,7 +54,7 @@ class FormUser extends Component {
   handleFormUpdate(e) {
     e.preventDefault();
     if (window.confirm(`Êtes-vous sur de vouloir mettre à jour le profil ?`)) {
-      fetch(`${API}/user/${this.props.userId}`, {
+      fetch(`/api/users/${this.props.userId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -62,8 +62,8 @@ class FormUser extends Component {
         },
         body: JSON.stringify({
           name: this.state.name,
-          age: this.state.age,
-          type: this.state.type
+          email: this.state.email,
+          password: this.state.password
         })
       })
       .then ( res => {
@@ -74,7 +74,7 @@ class FormUser extends Component {
     };
 
   render() {
-    let { name, age, type, redirect } = this.state
+    let { name, email, password, redirect } = this.state
     const { method } = this.props
 
         return (
@@ -95,7 +95,7 @@ class FormUser extends Component {
               </legend>
 
               <Input forLabel="name"
-                nameLabel="Prénom"
+                nameLabel="Prénom *"
                 type="text"
                 name="name"
                 value={name}
@@ -104,21 +104,21 @@ class FormUser extends Component {
                 onChange={this.handleFormChange}
                 />
 
-              <Input forLabel="age"
-                nameLabel="Âge"
+              <Input forLabel="email"
+                nameLabel="Email *"
                 type="text"
-                name="age"
-                value={age}
+                name="email"
+                value={email}
                 required="required"
-                maxLength="3"
+                maxLength="20"
                 onChange={this.handleFormChange}
                 />
 
-              <Input forLabel="type"
-                nameLabel="Type"
+              <Input forLabel="password"
+                nameLabel="Mot de passe *"
                 type="text"
-                name="type"
-                value={type}
+                name="password"
+                value={password}
                 required="required"
                 maxLength="10"
                 onChange={this.handleFormChange}
@@ -129,7 +129,7 @@ class FormUser extends Component {
                   value="Valider"
                   />
                 {(method === 'update') ?
-                  <Button value="close"
+                  <Button value="Close"
                     backgroundColor=" #009688" onClick={this.props.showForm}
                     type="button"
                     />

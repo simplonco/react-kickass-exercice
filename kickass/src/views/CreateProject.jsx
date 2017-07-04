@@ -10,6 +10,9 @@ class ProjectsForm extends React.Component {
     this.state = {
       title: "",
       description: "",
+      deadlines: "",
+      goal: "",
+      contributions: "",
       redirect: false
     }
 
@@ -25,7 +28,7 @@ class ProjectsForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (window.confirm(` Êtes-vous de vouloir créer le projet ${this.state.title} ?`)) {
-      fetch(`${API}/project`, {
+      fetch(`/api/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,6 +37,9 @@ class ProjectsForm extends React.Component {
         body: JSON.stringify({
           title: this.state.title,
           description: this.state.description,
+          deadlines: this.state.deadlines,
+          goal: this.state.goal,
+          contributions: this.state.contributions
         })
       })
       .then( (result) => {
@@ -50,10 +56,10 @@ class ProjectsForm extends React.Component {
     const { redirect } = this.state
 
     return (
-      <div className="container-form">
+      <div>
         <form onSubmit={this.handleSubmit}>
           <legend>Ajouter un projet : </legend>
-          <Input forLabel="title" nameLabel="Titre"
+          <Input forLabel="title" nameLabel="Titre *"
             type="text"
             name="title"
             value={this.state.title}
@@ -61,13 +67,37 @@ class ProjectsForm extends React.Component {
             onChange={this.handleFormChange}
             />
 
-          <Input forLabel="description" nameLabel="Description"
+          <Input forLabel="description" nameLabel="Description *"
               type="text"
               name="description"
               value={this.state.description}
               required="required"
               onChange={this.handleFormChange}
               />
+
+            <Input forLabel="deadlines" nameLabel="Date de fin *"
+              type="text"
+              name="deadlines"
+              value={this.state.deadlines}
+              required="required"
+              onChange={this.handleFormChange}
+            />
+
+            <Input forLabel="goal" nameLabel="Objectif *"
+              type="text"
+              name="goal"
+              value={this.state.goal}
+              required="required"
+              onChange={this.handleFormChange}
+            />
+
+            <Input forLabel="contributions" nameLabel="Dons *"
+              type="text"
+              name="contributions"
+              value={this.state.contributions}
+              required="required"
+              onChange={this.handleFormChange}
+            />
 
           <div className="container-btn">
             <Button type="submit" value="Valider" />
