@@ -18,6 +18,17 @@ class ProjectPage extends React.Component {
       })
   }
 
+  renderProject = () => {
+    if ((this.state.project !== undefined) && (this.state.project[0] !== undefined)) {
+      return (
+        <div>
+          <p>Title: {this.state.project[0].title}</p>
+          <p>Description: {this.state.project[0].description}</p>
+        </div>
+      )
+    }
+  }
+
   render() {
     return(
       <section>
@@ -28,8 +39,7 @@ class ProjectPage extends React.Component {
               {/*<img src={'http://www.game-experience.it/wp-content/uploads/2017/06/dragon-ball-fighter-z-299x150.jpg'} alt="#" />*/}
             </div>
             <div className="project-data">
-                <p>Title: {this.state.project.title}</p>
-                <p>Description: {this.state.project.description}</p>
+                {this.renderProject()}
             </div>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import API from './../variables.js'
 import '../CSS/Profile.css'
 import FormUser from '../components/Forms/FormUser.jsx'
 import Button from '../components/Button.jsx'
@@ -10,7 +9,6 @@ class UserProfile extends React.Component {
     this.state = {
       user: '',
       id: this.props.match.params.id,
-      name: '',
       showUpdateForm: false,
       // redirect: false
     }
@@ -34,12 +32,15 @@ class UserProfile extends React.Component {
   }
 
   renderUser = () => {
-    return this.state.user.map( (user) => {
-      return (
-        <p>Nom: {user.name}</p>
-      )
-    })
-  }
+    if ((this.state.user !== undefined) && (this.state.user[0] !== undefined)) {
+      return(
+        <div>
+          <p>Nom: {this.state.user[0].name}</p>
+          <p>Email: {this.state.user[0].email}</p>
+        </div>
+        )
+      }
+    }
 
   render() {
     let classShowUpdateForm = this.state.showUpdateForm === true ? 'show-form' : ''
@@ -57,11 +58,11 @@ class UserProfile extends React.Component {
               <img className="profile-img" src={'https://s-media-cache-ak0.pinimg.com/736x/28/da/d0/28dad0354b0fe720de843f9acf9c8710.jpg'} alt="#"/>
             </div>
             <div className="profile-data">
-              <p>{this.renderUser}</p>
               <div>
                 <Button value="Modif Info" onClick={this.showForm}
                 />
               </div>
+              {this.renderUser()}
             </div>
           </div>
         </div>
