@@ -123,6 +123,12 @@ apiRoutes
       res.send(result.rows);
     })
   })
+  .post('users/:id_user/projects/:id_project/likes', (req, res) => {
+    pool.query('insert into likes(id_user, id_project) values($1, $2)', [req.params.id_user, req.params.id_project], (err) => {
+      if (err) throw err;
+      res.send('Like on!');
+    })
+  })
   .get('/', (req, res) => {
    console.log('API launch');
     res.send('welcome to my api');

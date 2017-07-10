@@ -2,7 +2,7 @@ import React from 'react'
 import '../CSS/Profile.css'
 import FormUser from '../components/Forms/FormUser.jsx'
 import Button from '../components/Button.jsx'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -12,8 +12,10 @@ class UserProfile extends React.Component {
       likes: '',
       id: this.props.match.params.id,
       showUpdateForm: false,
-      // redirect: false
+      redirect: false
     }
+
+    this.handleDeleteUser = this.handleDeleteUser.bind(this)
   }
 
   componentDidMount = () => {
@@ -27,6 +29,15 @@ class UserProfile extends React.Component {
       .then( (json) => {
         this.setState({user: json});
       })
+  }
+
+  handleDeleteUser() {
+    if (window.confirm(`Êtes-vous sur de vouloir supprimer ce profil?`)) {
+      fetch(`/api/users/${this.state.id}`, { method: 'DELETE'})
+      .then( res => console.log('user deleted!'))
+      .catch( err => console.log('err', err))
+    }
+    this.setState({redirect: true})
   }
 
   showForm = () => {
@@ -49,17 +60,28 @@ class UserProfile extends React.Component {
           </ul>
         </div>
         )
+      } else {
+        return(
+          <h2>{this.state.user}</h2>
+        )
       }
     }
 
   render() {
+    console.log(this.state.user)
+
     let classShowUpdateForm = this.state.showUpdateForm === true ? 'show-form' : ''
 
     // const { from } = this.props.location.state || '/'
-    // const { redirect, id } = this.state
+    const { redirect } = this.state
 
     return(
       <section>
+
+        {redirect && (
+          <Redirect to='/users' />
+        )}
+
         <h2 className="main-title">Profil</h2>
         <div className="profile-container">
           <div className="profile-content">
@@ -70,6 +92,7 @@ class UserProfile extends React.Component {
               <div>
                 <Button value="Modif Info" onClick={this.showForm}
                 />
+                <Button value="Supp Profil" backgroundColor="#f44336" onClick={this.handleDeleteUser}/>
               </div>
               {this.renderUser()}
             </div>
@@ -80,7 +103,7 @@ class UserProfile extends React.Component {
             classContainerForm="update-info"
             classForm={classShowUpdateForm}
             userId={this.state.id}
-            showForm={this.showForm}
+            onClick={this.showForm}
           />
       </section>
     )

@@ -1,30 +1,34 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import '../../CSS/Form.css'
-import Input from './Input.jsx'
-import Button from '../Button.jsx'
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import '../../CSS/Form.css';
+import Input from './Input.jsx';
+import Button from '../Button.jsx';
 
-class FormUser extends Component {
+class Form extends Component {
   constructor(props) {
      super(props);
      this.state= {
        name: '',
        email: '',
        password: '',
-       redirect: false
+       redirect: false,
      };
-     this.handleFormSubmit = this.handleFormSubmit.bind(this)
-     this.handleFormUpdate = this.handleFormUpdate.bind(this)
+     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+     this.handleFormUpdate = this.handleFormUpdate.bind(this);
+   };
+
+   showForm = () => {
+     this.setState({showUpdateForm: this.showUpdateForm =! this.showUpdateForm});
    };
 
   handleFormChange = (event) => {
      this.setState({
          [event.target.name]: event.target.value
-      })
-  }
+       });
+   };
 
   handleFormSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
     if (window.confirm(`Êtes-vous sur de vouloir créer l'utilisateur ${this.state.name} ?`)) {
       fetch(`/api/users`, {
         method: 'POST',
@@ -42,7 +46,7 @@ class FormUser extends Component {
         console.log(`L'utilisateur ${this.state.name} a été créé`)
         this.setState({redirect: true});
       })
-      .catch( (err) => console.log(`L'utilisateur n' a pas été créé ${err}`))
+      .catch( (err) => console.log(`L'utilisateur n' a pas été créé ${err}`));
     };
   };
 
@@ -63,14 +67,13 @@ class FormUser extends Component {
       })
       .then ( res => {
         console.log(`L'utilisateur a bien été mis à jour`);
-        this.setState({redirect: true})
       })
       .catch ( err => console.log(`Une erreur s'est produite, ${err}`))
-      }
-    }
+      };
+    };
 
   render() {
-    let { name, email, password, redirect, redirectAfterUpdate } = this.state
+    let { name, email, password, redirect } = this.state
     const { method } = this.props
 
         return (
@@ -112,7 +115,7 @@ class FormUser extends Component {
 
               <Input forLabel="password"
                 nameLabel="Mot de passe *"
-                type="password"
+                type="text"
                 name="password"
                 value={password}
                 required="required"
@@ -126,7 +129,7 @@ class FormUser extends Component {
                   />
                 {(method === 'update') ?
                   <Button value="Close"
-                    backgroundColor=" #009688" onClick={this.props.onClick}
+                    backgroundColor=" #009688" onClick={this.props.showForm}
                     type="button"
                     />
                   :
@@ -142,4 +145,4 @@ class FormUser extends Component {
       }
     }
 
-export default FormUser;
+export default Form;

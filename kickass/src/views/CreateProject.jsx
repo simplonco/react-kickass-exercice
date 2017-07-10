@@ -12,6 +12,7 @@ class ProjectsForm extends React.Component {
       deadlines: "",
       goal: "",
       contributions: "",
+      id_user: '',
       redirect: false
     }
 
@@ -38,7 +39,8 @@ class ProjectsForm extends React.Component {
           description: this.state.description,
           deadlines: this.state.deadlines,
           goal: this.state.goal,
-          contributions: this.state.contributions
+          contributions: this.state.contributions,
+          id_user: this.state.id_user
         })
       })
       .then( (result) => {
@@ -94,6 +96,14 @@ class ProjectsForm extends React.Component {
               type="text"
               name="contributions"
               value={this.state.contributions}
+              required="required"
+              onChange={this.handleFormChange}
+            />
+
+            <Input forLabel="id_user" nameLabel="Id user *"
+              type="text"
+              name="id_user"
+              value={this.state.id_user}
               required="required"
               onChange={this.handleFormChange}
             />

@@ -13,8 +13,9 @@ const Button = (props) => {
 }
 
 Button.defaultProps = {
-  backgroundColor: "#03A9F4",
-  color: "white"
+  backgroundColor: '#03A9F4',
+  color: 'white',
+  type: 'button'
 }
 
 export default Button;
