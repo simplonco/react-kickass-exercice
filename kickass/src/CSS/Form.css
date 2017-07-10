@@ -1,0 +1,91 @@
+.container-form {
+  width: 100%;
+  margin: 150px auto;
+  box-shadow: 0px 0px 2px 0px black;
+  overflow: hidden;
+}
+
+form {
+  padding: 30px;
+}
+
+legend {
+  text-align: center;
+}
+
+.field {
+  position: relative;
+  padding: 16px 0 8px 0;
+}
+
+.field-label {
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 16px;
+  padding-top: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  transform: translateY(24px);
+  transform-origin: top left;
+  transition-duration: 0.4s;
+}
+
+.field-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  line-height: 16px;
+  padding: 8px 0;
+  -webkit-appearance: none;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  transition-duration: 0.4s;
+}
+
+.field::after {
+  content:'';
+  height: 2px;
+  width: 100%;
+  position:absolute;
+  bottom:6;
+  left:0;
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.is-focused::after {
+  transform: scaleX(1);
+}
+
+.is-focused .field-label {
+  transform: translateY(0);
+  transform: scale(0.8);
+}
+
+.has-label .field-label {
+  color: #EF6C00;
+}
+
+.field.has-label::after {
+  background-color: #EF6C00;
+}
+
+.field-input:required {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.container-btn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px;
+  text-align: center;
+}
+
+.container-btn button {
+  margin-left: 30px;
+}
