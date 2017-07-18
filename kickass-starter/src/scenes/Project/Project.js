@@ -11,7 +11,7 @@ export default class Project extends Component {
 			project: null,
 			title: "",
 			description: "",
-			creator: "",
+			creator: undefined,
 			update: false,
 		}
 
@@ -32,7 +32,7 @@ export default class Project extends Component {
 			update: true,
 			title: project.title,
 			description: project.description,
-			creator: project._creator,
+			creator: project.user_id,
 		});
 	}
 
@@ -54,15 +54,16 @@ export default class Project extends Component {
 	}
 
 	handleUpdateFormSubmit() {
+		const { title, description, creator } = this.state;
 		fetch(`${API}/project/${this.props.projectId}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				title: this.state.title,
-				description: this.state.description,
-				creator: this.state.creator
+				title,
+				description,
+				_creator: creator
 			})
 		})
 			.then(res => {

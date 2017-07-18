@@ -27,9 +27,7 @@ export default class User extends Component {
 		fetch(`${API}/user/${this.props.match.params.userId}`)
 			.then(res => res.json())
 			.then(user => {
-				this.setState({
-					user: user
-				});
+				this.setState({ user });
 			})
 			.catch(err => console.log('error ', err));
 
@@ -55,13 +53,15 @@ export default class User extends Component {
 	}
 
 	handleUpdateUserBtnClick() {
+		const { name, age, type } = this.state.user;
 		this.setState({
 			update: true,
-			name: this.state.user.name,
-			age: this.state.user.age,
-			type: this.state.user.type,
+			name,
+			age,
+			type,
 		});
 	}
+
 
 	handleFormChange = (e) => {
 		this.setState({
@@ -70,6 +70,7 @@ export default class User extends Component {
 	}
 
 	handleUpdateFormSubmit() {
+		const { name, age, type } = this.state;
 		fetch(`${API}/user/${this.state.user._id}`, {
 			method: 'PUT',
 			headers: {
@@ -77,9 +78,9 @@ export default class User extends Component {
 				'Origin': 'Access-Control-Allow-Origin'
 			},
 			body: JSON.stringify({
-				name: this.state.name,
-				age: this.state.age,
-				type: this.state.type
+				name,
+				age,
+				type
 			})
 		})
 			.then(res => {
@@ -120,7 +121,6 @@ export default class User extends Component {
 									title={`${user.name}'s projects :`}
 									elementsType="project"
 									propertyCalling="title"
-
 								/>
 								: <p className="italic-text">No project for the moment</p>
 						}

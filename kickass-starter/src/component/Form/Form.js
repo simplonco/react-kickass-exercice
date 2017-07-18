@@ -36,12 +36,9 @@ const Form = (props) => {
 
 
 	return (
-
 		<div className="container-center">
 			<div className="sub-container user-info">
 				<h3>{props.title}</h3>
-
-
 				{renderInputs()}
 				<button
 					className="gradient-btn color-1-gradient"
