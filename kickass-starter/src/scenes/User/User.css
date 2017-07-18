@@ -1,0 +1,23 @@
+.container-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.sub-container {
+	border: 3px solid #545454;
+	padding: 20px;
+	margin: 10px;
+}
+
+button {
+	background-color: #1e99fb;
+	color: #fff;
+	border: none;
+	border-radius: 2px;
+	padding: 10px 15px;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-weight: bold;
+	transition: 0.3s;
+}

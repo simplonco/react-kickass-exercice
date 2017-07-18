@@ -1,0 +1,33 @@
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+.italic-text {
+	font-style: italic;
+	font-weight: 300;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.flex-row {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+}
+
+.Home h3 {
+	font-size: 1.5rem;
+}
+
+.Home .List {
+	width: 45%;
+}

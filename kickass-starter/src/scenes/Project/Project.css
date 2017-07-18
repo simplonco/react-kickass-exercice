@@ -1,0 +1,145 @@
+#user-suggestion {
+	position: absolute;
+	background-color: #FFF;
+	border: 1px solid #6C6C6C;
+	box-shadow: 2px 3px 5px rgba(0,0,0,0.3);
+	top: 10px;
+	right: 10px;
+	min-width: 100px;
+	padding: 5px;
+}
+
+
+#user-suggestion>li {
+	padding: 2px;
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+#user-suggestion>li:hover {
+	background-color: #ECECEC;
+}
+
+.user-info {
+	box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+	border-radius: 2px;
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+}
+
+
+.gradient-btn {
+	color: #1e99fb;
+	background-color: transparent;
+	transition: 0.3s ease;
+	border: 3px solid transparent;
+	-moz-border-image: -moz-linear-gradient(left, #3acfd5 0%, #1e99fb 100%);
+	-webkit-border-image: -webkit-linear-gradient(left, #3acfd5 0%, #1e99fb 100%);
+	border-image: linear-gradient(to right, #3acfd5 0%, #1e99fb 100%);
+	border-image-slice: 1;
+	background: -webkit-linear-gradient(left, #3acfd5, #1e99fb);
+	-webkit-background-clip: text;
+	background-clip: text;
+	/*-webkit-text-fill-color: transparent;*/
+	position: relative;
+	overflow: hidden;
+	z-index: 10;
+	/*transform: skewX(-15deg);*/
+}
+
+
+.gradient-btn::after {
+	content:"";
+	background: -webkit-linear-gradient(left, #3acfd5, #1e99fb);
+	background: -moz-linear-gradient(left, #3acfd5, #1e99fb);
+	background: -o-linear-gradient(left, #3acfd5, #1e99fb);
+	background: linear-gradient(to right, #3acfd5, #1e99fb);
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	z-index: -100;
+	transition: 0.3s;
+}
+
+.gradient-btn:hover {
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: #fff;
+	background-clip: text;
+	background: #fff;
+	color: #fff;
+}
+
+.gradient-btn:hover::after {
+	width: 100%;
+}
+
+
+.user-info button:nth-of-type(2) {
+	margin-top: 1em;
+}
+
+.user-info>p {
+	border-bottom: 1px solid rgb(220, 220,220);
+	display: flex;
+	justify-content: space-between;
+	padding: 0.2em 0.5em;
+}
+
+.user-info>fieldset {
+	width: 100%;
+	margin: 10px auto;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	padding: 0;
+	padding-bottom: 0.5em;
+	border: none;
+}
+
+.user-info>fieldset>input, .user-info>fieldset>textarea {
+	color: rgb(50,50,50);
+	width: 100%;
+	border: none;
+	margin-bottom: 0;
+	border-bottom: 1px solid rgb(220, 220,220);
+	padding: 1.2em 1em 0.5em 1em;
+	box-sizing: border-box;
+	font-size: 1rem;
+}
+
+.user-info input:focus, .user-info textarea:focus {
+	outline: none;
+}
+
+.user-info hr {
+	margin-top: 0;
+	transform: scaleX(0);
+	border: none;
+	border-bottom: 2px solid #1eaefb;
+	transition: 0.3s ease;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.user-info input:focus ~ hr,
+.user-info textarea:focus ~ hr {
+	transform: scaleX(1);
+}
+
+.user-info>fieldset>label {
+	position: absolute;
+	top: 0.1em;
+	left: 0.3em;
+	font-size: 0.7rem;
+	color: rgb(150,150,150);
+}
+
+.user-info input:focus ~ label,
+.user-info textarea:focus ~ label {
+	color: #3acfd5;
+}

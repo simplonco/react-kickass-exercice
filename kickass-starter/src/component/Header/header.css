@@ -1,0 +1,65 @@
+#header {
+	background-color: #545454;
+	color: #fff;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#header h1 {
+	margin: 0;
+}
+
+#header a {
+	color: #ECECEC;
+	font-size: 1.1rem;
+	transition: 0.3s;
+}
+
+.gradient-text {
+	background: -webkit-linear-gradient(left, #3acfd5, #1e99fb);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+#header .navbar {
+	display: flex;
+	justify-content: space-between;
+	min-width: 20rem;
+}
+
+#header .navbar li {
+	position: relative;
+}
+
+#header .navbar li hr {
+	position: absolute;
+	top: 1em;
+	left: 0;
+	width: 100%;
+	border: none;
+	border-top: 3px solid transparent;
+	-moz-border-image: -moz-linear-gradient(left, #3acfd5 0%, #1e99fb 100%);
+	-webkit-border-image: -webkit-linear-gradient(left, #3acfd5 0%, #1e99fb 100%);
+	border-image: linear-gradient(to right, #3acfd5 0%, #1e99fb 100%);
+	border-image-slice: 1;
+	background: -webkit-linear-gradient(left, #3acfd5, #1e99fb);
+	transform: scaleX(0);
+	transition: 0.3s ease-out;
+}
+
+#header .navbar li:hover a, #header .navbar a.active {
+	color: #fff;
+}
+
+#header .navbar a:hover hr, #header .navbar a.active hr {
+	transform: scaleX(1);
+}
+
+.blue-text {
+	color: #1eaefb;
+}
